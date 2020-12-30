@@ -180,6 +180,11 @@ In general, function components are good for simple content. Otherwise use class
 * [Redux](https://redux.js.org/)
 * [Mobx](https://mobx.js.org/README.html)
 
+### APIs
+
+* [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+
+
 
 
 
