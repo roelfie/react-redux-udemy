@@ -79,7 +79,7 @@ becomes
 
 
 
-# Section 3: Communicating with Props
+# Section 3: Props
 
 Props (properties) are used to pass information to a React component in order to customize / configure it.
 
@@ -155,7 +155,47 @@ Function components
 
 In general, function components are good for simple content. Otherwise use class components. Also, Hooks are easier to understand when you have a good understanding of class components.
 
-### 
+A class based component extends `React.Component` and defines a `render()` method that returns JSX:
+
+```
+import React from 'react';
+
+class App extends React.Component {
+  render() { 
+    return <div>Hello!</div>;
+  }
+}
+```
+
+Do not put initialization code inside the `render()` method, as the `render()` method is called very often! 
+
+
+
+# Section 5: State
+
+State is a JavaScript object that contains data relevant to a class-based component.
+* Updating the State causes the component to rerender.
+* State must be initialized when a component is created.
+* State can only be updated using the function `setState()`.
+
+
+Example:
+```
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { latitude: 'Unknown' };
+    window.navigator.geolocation.getCurrentPosition(
+      (position) => this.setState({ latitude: position.coords.latitude }),
+      (err) => console.error(err.message)
+    );
+  }
+
+  render() { 
+    return <div>Your location: {this.state.latitude}</div>;
+  }
+}
+```
 
 
 
