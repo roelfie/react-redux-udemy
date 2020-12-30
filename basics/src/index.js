@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import faker from 'faker';
 import Comment from './comments/Comment';
+import ApprovalPanel from './comments/ApprovalPanel';
 
 const RandomComment = () => {
   return (
@@ -14,10 +15,15 @@ const RandomComment = () => {
 const App = () => {
   return (
     <div className="ui container comments">
-      <RandomComment />
-      <RandomComment />
-      <RandomComment />
-      <RandomComment />
+      <ApprovalPanel>
+        <RandomComment />
+      </ApprovalPanel>
+      <ApprovalPanel>
+        <RandomComment />
+      </ApprovalPanel>
+      <ApprovalPanel>
+        <RandomComment />
+      </ApprovalPanel>
     </div>
   );
 };
