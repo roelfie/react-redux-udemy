@@ -171,6 +171,8 @@ Do not put initialization code inside the `render()` method, as the `render()` m
 
 
 
+
+
 # Section 5: State
 
 State is a JavaScript object that contains data relevant to a class-based component.
@@ -196,6 +198,35 @@ class App extends React.Component {
   }
 }
 ```
+
+
+
+
+
+# Section 6: Lifecycle Methods
+
+[Component Lifecycle](https://reactjs.org/docs/state-and-lifecycle.html):
+
+1. constructor
+   * Initialize state
+2. render
+   * Return JSX
+   * Called many times
+   * No data loading!
+3. componentDidMount
+   * Initialization logic (like data loading)
+4. componentDidUpdate
+   * Called when state changes
+   * Example: Data loading based on user input
+5. componentWillUnmount
+   * Cleanup when component is removed from screen
+   * Freuqently used in combination with non-React libraries
+
+We have already seen `constructor()` and `render()`. We can also add the other methods to our component class, for instance `componentDidMount()` to implement initialization logic.
+
+There are a few more (rarely used) lifecycle methods as described in the React.Component [API Reference](https://reactjs.org/docs/react-component.html#the-component-lifecycle).
+
+
 
 
 
