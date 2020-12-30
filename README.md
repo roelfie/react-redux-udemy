@@ -28,6 +28,10 @@ const App = () => {
 }
 ```
 
+
+
+
+
 # Section 2: JSX
 
 JSX stands for JavaScript XML and is a React syntax extension to JavaScript. 
@@ -71,9 +75,56 @@ becomes
 <label className="label" for="name">Name</label>
 ```
 
+
+
+
+
 # Section 3: Communicating with Props
 
-Props is a system for passing data to a React component in order to customize / configure it.
+Props (properties) are used to pass information to a React component in order to customize / configure it:
+
+```
+const Paragraph = (props) => {
+    return (
+        <div>{props.content}</div>
+    );
+};
+```
+
+```
+const App = () => {
+  return (
+      <Paragraph content="Quisquam sunt vero odio excepturi." />
+  );
+};
+```
+
+
+
+
+
+
+# References
+
+### React
+
+* [React](https://reactjs.org/)
+* [create-react-app](https://create-react-app.dev/)
+
+### Tools
+* [React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+* [CodeSandbox](http://react.new/)
+* [Babel](https://babeljs.io/repl)
+* [Semantic UI](https://semantic-ui.com/)
+* [Faker](https://github.com/marak/Faker.js/)
+
+### Courses
+* [Udemy - Modern React with Redux](https://www.udemy.com/course/react-redux/learn/lecture/12531046#overview)
+
+### JavaScript state managers
+* [Redux](https://redux.js.org/)
+* [Mobx](https://mobx.js.org/README.html)
+
 
 
 
