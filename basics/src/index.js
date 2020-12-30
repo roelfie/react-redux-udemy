@@ -5,7 +5,7 @@ import Comment from './comments/Comment';
 
 const RandomComment = () => {
   return (
-    <Comment author={faker.name.firstName()}
+    <Comment author={faker.name.firstName() + " " + faker.name.lastName()}
              avatar={faker.image.image()} 
              comment={faker.lorem.sentence()}/>
   );
