@@ -81,7 +81,9 @@ becomes
 
 # Section 3: Communicating with Props
 
-Props (properties) are used to pass information to a React component in order to customize / configure it:
+Props (properties) are used to pass information to a React component in order to customize / configure it.
+
+You can use named properties: 
 
 ```
 const Paragraph = (props) => {
@@ -94,11 +96,39 @@ const Paragraph = (props) => {
 ```
 const App = () => {
   return (
-      <Paragraph content="Quisquam sunt vero odio excepturi." />
+    <Paragraph content="Quisquam sunt vero odio excepturi." />
   );
 };
 ```
 
+Or nested components (children):
+
+```
+const ApprovalPanel = (props) => {
+    return (
+      <div className="content">
+        {props.children}
+      </div>
+    );
+};
+```
+
+```
+const App = () => {
+  return (
+    <div className="ui container comments">
+      <ApprovalPanel>
+        <Comment />
+      </ApprovalPanel>
+
+      <ApprovalPanel>
+        <h3>Please confirm</h3>
+        <b>Are you sure?</b>
+      </ApprovalPanel>
+    </div>
+  );
+};
+```
 
 
 
