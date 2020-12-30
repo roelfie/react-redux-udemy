@@ -134,6 +134,31 @@ const App = () => {
 
 
 
+# Section 4: Class-based Components
+
+### Class components vs. Function components
+
+In the old days class components had much more capabilities than function components.
+Therefore, in older React projects, you will see more class components than function components.
+
+With the introduction of __Hooks__, functional components now have the same capabilities:
+
+Class components 
+* can produce JSX to show content to the user
+* can use lifecycle events to run code at specific points in time
+* can use state to update content on the screen
+
+Function components 
+* can produce JSX to show content to the user
+* can use __Hooks__ to run code at specific points in time
+* can use __Hooks__ to access state & update content on the screen
+
+In general, function components are good for simple content. Otherwise use class components. Also, Hooks are easier to understand when you have a good understanding of class components.
+
+### 
+
+
+
 # References
 
 ### React
