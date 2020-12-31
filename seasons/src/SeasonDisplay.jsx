@@ -10,9 +10,13 @@ const isSummer = (latitude, month) => {
 
 const SeasonDisplay = (props) => {
     const summer = isSummer(props.latitude, new Date().getMonth());
+    const icon = summer === true ? 'sun' : 'snowflake';
     return (
         <div>
             <div>Season: {summer === true ? 'Summer' : 'Winter'}</div>
+            <div>
+                <i className={`${icon} big icon`}></i>
+            </div>
         </div>
     );
 };
