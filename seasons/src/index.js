@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Loader from './Loader';
 import SeasonDisplay from './SeasonDisplay';
 
 class App extends React.Component {
@@ -13,7 +14,8 @@ class App extends React.Component {
     if (!this.state.latitude && this.state.errorMessage) {
       return <div>Error: {this.state.errorMessage}</div>;
     }
-    return <div>Loading...</div>;
+
+    return <Loader text="Please wait..." />;
   }
 
   componentDidMount() {
