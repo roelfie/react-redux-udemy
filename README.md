@@ -227,6 +227,27 @@ We have already seen `constructor()` and `render()`. We can also add the other m
 There are a few more (rarely used) lifecycle methods as described in the React.Component [API Reference](https://reactjs.org/docs/react-component.html#the-component-lifecycle).
 
 
+Example of state and lifecycle (a clock that updates itself every second):
+```
+class Clock extends React.Component {
+    state = { time : new Date().toLocaleTimeString() };
+    
+    componentDidMount() {
+        setInterval(() => {
+            this.setState({ time : new Date().toLocaleTimeString() })
+        }, 1000)
+    }
+
+    render() {
+        return (
+            <div className="time">
+                The time is: {this.state.time}
+            </div>
+        );
+    }
+}
+```
+
 
 
 
