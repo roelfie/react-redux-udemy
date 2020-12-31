@@ -162,6 +162,10 @@ class App extends React.Component {
 
 Do not put initialization code inside the `render()` method, as the `render()` method is called very often!
 
+### Using props in class components
+
+Anywhere inside a class component you can lookup props using `this.props.propName`.
+
 # Section 5: State
 
 State is a JavaScript object that contains data relevant to a class-based component.

@@ -1,12 +1,18 @@
-import React from 'react';
-import SearchBar from './SearchBar';
+import React from "react";
+import SearchBar from "./SearchBar";
 
-const App = () => {
+class App extends React.Component {
+  findImages(searchTerm) {
+    console.log(`findImages(${searchTerm})`);
+  }
+
+  render() {
     return (
-        <div className="ui container" style={{ marginTop: '10px' }}>
-            <SearchBar />
-        </div>
+      <div className="ui container" style={{ marginTop: "10px" }}>
+        <SearchBar onSubmit={this.findImages} />
+      </div>
     );
+  }
 }
 
 export default App;
