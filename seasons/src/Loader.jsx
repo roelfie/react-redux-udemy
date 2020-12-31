@@ -8,4 +8,8 @@ const Loader = (props) => {
     );
 };
 
+Loader.defaultProps = {
+    text: 'Loading...'
+}
+
 export default Loader;
