@@ -258,6 +258,8 @@ class Clock extends React.Component {
 - [Babel](https://babeljs.io/repl)
 - [Semantic UI](https://semantic-ui.com/)
 - [Faker](https://github.com/marak/Faker.js/)
+- [Prettier](https://prettier.io/) VSCode formatter plugin
+  - Open VSCode `settings.json` ('Open Settings (JSON)' command) and add the following line: `"editor.defaultFormatter": "esbenp.prettier-vscode"`. Optionally, set 'Format on save' = true.
 
 ### Courses
 
