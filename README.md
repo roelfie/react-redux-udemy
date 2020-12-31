@@ -11,7 +11,7 @@ My system:
 
 Generating a new React app:
 
-```
+```js
 $ npx create-react-app myapp
 $ cd myapp
 $ npm start
@@ -25,10 +25,10 @@ Libraries included in a new React app by default:
 
 A React component is a function or a class that produces HTML (JSX) and handles feedback (event handlers). Example of a function based component:
 
-```
+```js
 const App = () => {
-    return <div>Hi there!</div>;
-}
+  return <div>Hi there!</div>;
+};
 ```
 
 # Section 2: JSX
@@ -39,7 +39,7 @@ Each React component is usually put in its own file. This file can have extensio
 
 With [babeljs.io](https://babeljs.io/repl) you can check how Babel translates JSX into JavaScript. The above component translates into
 
-```
+```js
 const App = () => {
   return React.createElement("div", null, "Hi there!");
 };
@@ -47,39 +47,39 @@ const App = () => {
 
 ### Referencing variables
 
-```
+```js
 const App = () => {
-    const buttonText = 'Click me!';
-    return (
-        <button>
-            {buttonText}
-        </button>
-    )
+  const buttonText = "Click me!";
+  return <button>{buttonText}</button>;
 };
 ```
 
 ### Inline styling
 
-```
+```js
 <div style="background-color: red; border: 1px solid red"></div>
 ```
 
 becomes
 
-```
-<div style={{ backgroundColor: 'red', border: '1px solid red' }}></div>
+```js
+<div style={{ backgroundColor: "red", border: "1px solid red" }}></div>
 ```
 
 ### Class -> className
 
-```
-<label class="label" for="name">Name</label>
+```js
+<label class="label" for="name">
+  Name
+</label>
 ```
 
 becomes
 
-```
-<label className="label" for="name">Name</label>
+```js
+<label className="label" for="name">
+  Name
+</label>
 ```
 
 # Section 3: Props
@@ -88,35 +88,27 @@ Props (properties) are used to pass information to a React component in order to
 
 You can use named properties:
 
-```
+```js
 const Paragraph = (props) => {
-    return (
-        <div>{props.content}</div>
-    );
+  return <div>{props.content}</div>;
 };
 ```
 
-```
+```js
 const App = () => {
-  return (
-    <Paragraph content="Quisquam sunt vero odio excepturi." />
-  );
+  return <Paragraph content="Quisquam sunt vero odio excepturi." />;
 };
 ```
 
 Or nested components (children):
 
-```
+```js
 const ApprovalPanel = (props) => {
-    return (
-      <div className="content">
-        {props.children}
-      </div>
-    );
+  return <div className="content">{props.children}</div>;
 };
 ```
 
-```
+```js
 const App = () => {
   return (
     <div className="ui container comments">
@@ -158,8 +150,8 @@ In general, function components are good for simple content. Otherwise use class
 
 A class based component extends `React.Component` and defines a `render()` method that returns JSX:
 
-```
-import React from 'react';
+```js
+import React from "react";
 
 class App extends React.Component {
   render() {
@@ -180,11 +172,11 @@ State is a JavaScript object that contains data relevant to a class-based compon
 
 Example:
 
-```
+```js
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { latitude: 'Unknown' };
+    this.state = { latitude: "Unknown" };
     window.navigator.geolocation.getCurrentPosition(
       (position) => this.setState({ latitude: position.coords.latitude }),
       (err) => console.error(err.message)
@@ -222,27 +214,67 @@ There are a few more (rarely used) lifecycle methods as described in the React.C
 
 Example of state and lifecycle (a clock that updates itself every second):
 
-```
+```js
 class Clock extends React.Component {
-    state = { time : new Date().toLocaleTimeString() };
+  state = { time: new Date().toLocaleTimeString() };
 
-    componentDidMount() {
-        setInterval(() => {
-            this.setState({ time : new Date().toLocaleTimeString() })
-        }, 1000)
-    }
+  componentDidMount() {
+    setInterval(() => {
+      this.setState({ time: new Date().toLocaleTimeString() });
+    }, 1000);
+  }
 
-    render() {
-        return (
-            <div className="time">
-                The time is: {this.state.time}
-            </div>
-        );
-    }
+  render() {
+    return <div className="time">The time is: {this.state.time}</div>;
+  }
 }
 ```
 
 # Section 7: Forms and Events
+
+### Uncontrolled vs. controlled form elements
+
+For an _uncontrolled element_ only the HTML DOM knows the value of the element:
+
+```js
+class SearchBar extends React.Component {
+  onInputChange(event) {
+    console.log(event.target.value);
+    // Do stuff...
+  }
+
+  render() {
+    return (
+      <form className="ui form">
+        <input type="text" name="search-term" onChange={this.onInputChange} />
+      </form>
+    );
+  }
+}
+```
+
+A _controlled element_ is backed by the component's state:
+
+```js
+class SearchBar extends React.Component {
+  state = { term: "" };
+
+  render() {
+    return (
+      <form className="ui form">
+        <input
+          type="text"
+          name="search-term"
+          value={this.state.term}
+          onChange={(e) => this.setState({ term: e.target.value })}
+        />
+      </form>
+    );
+  }
+}
+```
+
+The source of thruth for controlled elements is the State and not the HTML DOM. The React application is storing all the data; the purpose of the DOM is presentation only!
 
 # References
 
