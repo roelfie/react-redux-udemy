@@ -276,6 +276,91 @@ class SearchBar extends React.Component {
 
 The source of thruth for controlled elements is the State and not the HTML DOM. The React application is storing all the data; the purpose of the DOM is presentation only!
 
+### JavaScript 'this' keyword
+
+This code will result in an error on form submit (`TypeError: Cannot read property 'state' of undefined`):
+
+```js
+class SearchBar extends React.Component {
+  state = { term: "" };
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.term);
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.onFormSubmit}>// Input elements using state...</form>
+    );
+  }
+}
+```
+
+#### Solution 1: bind 'this' in the constructor
+
+```js
+class SearchBar extends React.Component {
+  state = { term: "" };
+
+  constructor() {
+    super();
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+  }
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.term);
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.onFormSubmit}>// Input elements using state...</form>
+    );
+  }
+}
+```
+
+#### Solution 2: Use an arrow function to bind 'this' properly
+
+```js
+class SearchBar extends React.Component {
+  state = { term: "" };
+
+  onFormSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state.term);
+  };
+
+  render() {
+    return (
+      <form onSubmit={this.onFormSubmit}>// Input elements using state...</form>
+    );
+  }
+}
+```
+
+#### Solution 3: Invoke using an arrow function
+
+```js
+class SearchBar extends React.Component {
+  state = { term: "" };
+
+  onFormSubmit(event) {
+    event.preventDefault();
+    console.log(this.state.term);
+  }
+
+  render() {
+    return (
+      <form onSubmit={(e) => this.onFormSubmit(e)}>
+        // Input elements using state...
+      </form>
+    );
+  }
+}
+```
+
 # References
 
 ### React
