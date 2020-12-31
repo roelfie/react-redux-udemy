@@ -365,6 +365,29 @@ class SearchBar extends React.Component {
 }
 ```
 
+# Section 8: Making API requests
+
+We start with a [comparison](https://medium.com/javascript-in-plain-english/an-absolute-guide-to-javascript-http-requests-44c685edfa51) of the three most popular techniques for making API requests from a browser: XHR, Fetch and Axios.
+
+### XmlHttpRequest (XHR)
+
+- Low level built-in browser object.
+- Since 1999.
+
+### Fetch
+
+- Low level built-in browser object.
+- Modern replacement for XHR.
+- More advanced than XHR (supports concurrent requests, promise-based requests).
+
+### Axios
+
+- Third party library.
+- Good for more advanced use cases. For basic use cases, fetch will do.
+- Comparison of [fetch vs. Axios](https://blog.logrocket.com/axios-or-fetch-api/).
+
+In our projects we will be using Axios, and we use the free [Unsplash API](https://unsplash.com/documentation#search-photos) for searching photos.
+
 # References
 
 ### React
@@ -391,6 +414,10 @@ class SearchBar extends React.Component {
 - [Redux](https://redux.js.org/)
 - [Mobx](https://mobx.js.org/README.html)
 
-### APIs
+### Browser APIs
 
 - [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
+
+### REST APIs
+
+- [Unsplash](https://unsplash.com/developers) (images)
