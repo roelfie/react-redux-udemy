@@ -407,6 +407,15 @@ const ImageList = (props) => {
 export default ImageList;
 ```
 
+# Section 9: Ref
+
+[Refs](https://reactjs.org/docs/refs-and-the-dom.html) provide a way to access DOM nodes or React elements created in the render method.
+
+- Managing focus or media playback
+- Integrating with 3rd party libraries
+
+We use Refs in our `image-finder` app to get hold of `<img>` DOM elements to calculate the height of an image.
+
 # References
 
 ### React
