@@ -57,7 +57,7 @@ const App = () => {
 ### Inline styling
 
 ```js
-<div style="background-color: red; border: 1px solid red"></div>
+<div style='background-color: red; border: 1px solid red'></div>
 ```
 
 becomes
@@ -69,7 +69,7 @@ becomes
 ### Class -> className
 
 ```js
-<label class="label" for="name">
+<label class='label' for='name'>
   Name
 </label>
 ```
@@ -77,7 +77,7 @@ becomes
 becomes
 
 ```js
-<label className="label" for="name">
+<label className='label' for='name'>
   Name
 </label>
 ```
@@ -96,7 +96,7 @@ const Paragraph = (props) => {
 
 ```js
 const App = () => {
-  return <Paragraph content="Quisquam sunt vero odio excepturi." />;
+  return <Paragraph content='Quisquam sunt vero odio excepturi.' />;
 };
 ```
 
@@ -104,14 +104,14 @@ Or nested components (children):
 
 ```js
 const ApprovalPanel = (props) => {
-  return <div className="content">{props.children}</div>;
+  return <div className='content'>{props.children}</div>;
 };
 ```
 
 ```js
 const App = () => {
   return (
-    <div className="ui container comments">
+    <div className='ui container comments'>
       <ApprovalPanel>
         <Comment />
       </ApprovalPanel>
@@ -229,7 +229,7 @@ class Clock extends React.Component {
   }
 
   render() {
-    return <div className="time">The time is: {this.state.time}</div>;
+    return <div className='time'>The time is: {this.state.time}</div>;
   }
 }
 ```
@@ -249,8 +249,8 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <form className="ui form">
-        <input type="text" name="search-term" onChange={this.onInputChange} />
+      <form className='ui form'>
+        <input type='text' name='search-term' onChange={this.onInputChange} />
       </form>
     );
   }
@@ -265,10 +265,10 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <form className="ui form">
+      <form className='ui form'>
         <input
-          type="text"
-          name="search-term"
+          type='text'
+          name='search-term'
           value={this.state.term}
           onChange={(e) => this.setState({ term: e.target.value })}
         />
@@ -294,9 +294,7 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    return (
-      <form onSubmit={this.onFormSubmit}>// Input elements using state...</form>
-    );
+    return <form onSubmit={this.onFormSubmit}>// Input elements using state...</form>;
   }
 }
 ```
@@ -318,9 +316,7 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    return (
-      <form onSubmit={this.onFormSubmit}>// Input elements using state...</form>
-    );
+    return <form onSubmit={this.onFormSubmit}>// Input elements using state...</form>;
   }
 }
 ```
@@ -337,9 +333,7 @@ class SearchBar extends React.Component {
   };
 
   render() {
-    return (
-      <form onSubmit={this.onFormSubmit}>// Input elements using state...</form>
-    );
+    return <form onSubmit={this.onFormSubmit}>// Input elements using state...</form>;
   }
 }
 ```
@@ -356,11 +350,7 @@ class SearchBar extends React.Component {
   }
 
   render() {
-    return (
-      <form onSubmit={(e) => this.onFormSubmit(e)}>
-        // Input elements using state...
-      </form>
-    );
+    return <form onSubmit={(e) => this.onFormSubmit(e)}>// Input elements using state...</form>;
   }
 }
 ```
@@ -387,6 +377,15 @@ We start with a [comparison](https://medium.com/javascript-in-plain-english/an-a
 - Comparison of [fetch vs. Axios](https://blog.logrocket.com/axios-or-fetch-api/).
 
 In our projects we will be using Axios, and we use the free [Unsplash API](https://unsplash.com/documentation#search-photos) for searching photos.
+
+# Section 9: Lists of Records
+
+### JavaScript Map statements
+
+```js
+const numbers = [0, 1, 2, 3, 4];
+numbers.map((n) => n * 2);
+```
 
 # References
 
