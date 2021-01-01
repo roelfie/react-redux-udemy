@@ -387,6 +387,26 @@ const numbers = [0, 1, 2, 3, 4];
 numbers.map((n) => n * 2);
 ```
 
+Example of a React component that renders a list of photos from the Unsplash API:
+
+```js
+import React from "react";
+
+const ImageList = (props) => {
+  const images = props.images.map(({ id, description, urls }) => {
+    return (
+      <div key={id}>
+        <img src={urls.thumb} alt={description} />
+      </div>
+    );
+  });
+
+  return <div>{images}</div>;
+};
+
+export default ImageList;
+```
+
 # References
 
 ### React
