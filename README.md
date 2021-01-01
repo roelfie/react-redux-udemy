@@ -407,7 +407,7 @@ const ImageList = (props) => {
 export default ImageList;
 ```
 
-# Section 9: Ref
+# Section 10: Ref
 
 [Refs](https://reactjs.org/docs/refs-and-the-dom.html) provide a way to access DOM nodes or React elements created in the render method.
 
