@@ -521,7 +521,7 @@ Hooks help you write reusable code. Other hooks built in to React:
 - `useLayoutEffect`
 - `useDebugValue`
 
-The `widgets` application will be built using functional components and uses hooks.
+The `widgets` application is built with functional components and uses hooks to add state, lifecycle methods & other advanced stuff.
 
 # References
 
