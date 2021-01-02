@@ -422,20 +422,21 @@ We use Refs in our `image-finder` app to get hold of `<img>` DOM elements to cal
 
 - [React](https://reactjs.org/)
 - [create-react-app](https://create-react-app.dev/)
+- [Udemy - Modern React with Redux](https://www.udemy.com/course/react-redux/learn/lecture/12531046#overview)
 
 ### Tools
 
 - [React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 - [CodeSandbox](http://react.new/)
 - [Babel](https://babeljs.io/repl)
-- [Semantic UI](https://semantic-ui.com/)
-- [Faker](https://github.com/marak/Faker.js/)
 - [Prettier](https://prettier.io/) VSCode formatter plugin
   - Open VSCode `settings.json` ('Open Settings (JSON)' command) and add the following line: `"editor.defaultFormatter": "esbenp.prettier-vscode"`. Optionally, set 'Format on save' = true.
+- [Semantic UI](https://semantic-ui.com/)
 
-### Courses
+### JavaScript libraries
 
-- [Udemy - Modern React with Redux](https://www.udemy.com/course/react-redux/learn/lecture/12531046#overview)
+- [Axios](https://www.npmjs.com/package/axios)
+- [Faker](https://github.com/marak/Faker.js/)
 
 ### JavaScript state managers
 
@@ -448,4 +449,5 @@ We use Refs in our `image-finder` app to get hold of `<img>` DOM elements to cal
 
 ### REST APIs
 
-- [Unsplash](https://unsplash.com/developers) (images)
+- [Unsplash](https://unsplash.com/developers) (image-finder)
+- [Google](https://console.developers.google.com/) (movie-player)
