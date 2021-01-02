@@ -355,7 +355,7 @@ class SearchBar extends React.Component {
 }
 ```
 
-# Section 8: Making API requests
+# Section 8: HTTP Requests
 
 We start with a [comparison](https://medium.com/javascript-in-plain-english/an-absolute-guide-to-javascript-http-requests-44c685edfa51) of the three most popular techniques for making API requests from a browser: XHR, Fetch and Axios.
 
@@ -378,7 +378,7 @@ We start with a [comparison](https://medium.com/javascript-in-plain-english/an-a
 
 In our projects we will be using Axios, and we use the free [Unsplash API](https://unsplash.com/documentation#search-photos) for searching photos.
 
-# Section 9: Lists of Records
+# Section 9: Rendering Lists
 
 ### JavaScript Map statements
 
@@ -415,6 +415,17 @@ export default ImageList;
 - Integrating with 3rd party libraries
 
 We use Refs in our `image-finder` app to get hold of `<img>` DOM elements to calculate the height of an image.
+
+# Section 11: Movie Player app
+
+In the `movie-player` application we bring together all the techniques learned so far:
+
+- Functional components vs. Class-based components
+- Props
+- State
+- Lifecycle methods
+- HTTP Requests (Axios)
+- Styling (Semantic UI)
 
 # References
 
