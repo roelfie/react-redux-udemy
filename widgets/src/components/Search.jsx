@@ -22,7 +22,7 @@ const Search = () => {
       <div className='item' key={item.pageid}>
         <div className='content'>
           <div className='header'>{item.title}</div>
-          {item.snippet}
+          <span dangerouslySetInnerHTML={{ __html: item.snippet }}></span>
         </div>
       </div>
     );
