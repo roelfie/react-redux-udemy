@@ -212,14 +212,19 @@ Example:
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    // Initialize state
     this.state = { latitude: "Unknown" };
+
     window.navigator.geolocation.getCurrentPosition(
+      // Update state
       (position) => this.setState({ latitude: position.coords.latitude }),
       (err) => console.error(err.message)
     );
   }
 
   render() {
+    // Use state
     return <div>Your location: {this.state.latitude}</div>;
   }
 }
@@ -506,9 +511,7 @@ Hooks allow you to add extra capabilities to functional components.
 - `useEffect` somehow mimic lifecycle
 - `useRef` lets you create a Ref
 
-Hooks help you write reusable code.
-
-Other hooks built in to React:
+Hooks help you write reusable code. Other hooks built in to React:
 
 - `useContext`
 - `useReducer`
@@ -517,6 +520,8 @@ Other hooks built in to React:
 - `useImperativeHandle`
 - `useLayoutEffect`
 - `useDebugValue`
+
+The `widgets` application will be built using functional components and uses hooks.
 
 # References
 
