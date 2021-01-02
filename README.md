@@ -416,6 +416,39 @@ export default ImageList;
 
 We use Refs in our `image-finder` app to get hold of `<img>` DOM elements to calculate the height of an image.
 
+```js
+class ImageCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { spans: 0 };
+    // Initialize Ref
+    this.imageRef = React.createRef();
+  }
+
+  componentDidMount() {
+    // Add behavior to Ref
+    this.imageRef.current.addEventListener("load", this.setSpans);
+  }
+
+  setSpans = () => {
+    // Use Ref
+    const height = this.imageRef.current.clientHeight;
+    const spans = Math.ceil(height / 10);
+    this.setState({ spans: spans });
+  };
+
+  render() {
+    const { description, urls } = this.props.image;
+    // Bind Ref to DOM element
+    return (
+      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
+        <img ref={this.imageRef} alt={description} src={urls.regular}></img>
+      </div>
+    );
+  }
+}
+```
+
 # Section 11: Movie Player app
 
 In the `movie-player` application we bring together all the techniques learned so far:
@@ -426,6 +459,8 @@ In the `movie-player` application we bring together all the techniques learned s
 - Lifecycle methods
 - HTTP Requests (Axios)
 - Styling (Semantic UI)
+
+# Section 12: Hooks
 
 # References
 
