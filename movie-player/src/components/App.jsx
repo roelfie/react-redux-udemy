@@ -2,21 +2,20 @@ import React from "react";
 import Youtube from "../api/Youtube";
 import SearchBar from "./SearchBar";
 import VideoList from "./VideoList";
-import VideoDetails from "./VideoDetails";
+import VideoPlayer from "./VideoPlayer";
 
 class App extends React.Component {
-  state = { videos: [] };
+  state = { videos: [], selectedVideo: null };
 
   findVideos = (searchTerm) => {
     Youtube.findVideos(searchTerm)
       .catch((err) => console.log(err))
       .then((response) => {
         this.setState({ videos: response.data.items });
+        if (this.state.videos.length > 0) {
+          this.setState({ selectedVideo: this.state.videos[0] });
+        }
       });
-  };
-
-  playVideo = (videoId) => {
-    console.log(videoId);
   };
 
   render() {
@@ -24,10 +23,10 @@ class App extends React.Component {
       <div className='ui container'>
         <h2>Movie Player</h2>
         <SearchBar onSubmit={(term) => this.findVideos(term)} />
-        <VideoDetails />
+        <VideoPlayer video={this.state.selectedVideo} />
         <VideoList
           videos={this.state.videos}
-          onClickThumbnail={(videoId) => this.playVideo(videoId)}
+          onVideoSelect={(video) => this.setState({ selectedVideo: video })}
         />
       </div>
     );
