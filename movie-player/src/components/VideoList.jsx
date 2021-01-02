@@ -3,13 +3,7 @@ import VideoItem from "./VideoItem";
 
 const VideoList = (props) => {
   const videoItems = props.videos.map((v) => {
-    return (
-      <VideoItem
-        key={v.id.videoId}
-        title={v.snippet.title}
-        thumbnail={v.snippet.thumbnails.default.url}
-      />
-    );
+    return <VideoItem key={v.id.videoId} video={v} onClickThumbnail={props.onClickThumbnail} />;
   });
   return <div>{videoItems}</div>;
 };

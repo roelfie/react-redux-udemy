@@ -1,10 +1,14 @@
 import React from "react";
 
-const VideoItem = (props) => {
+const VideoItem = ({ video, onClickThumbnail }) => {
   return (
     <div>
-      <h6>{props.title}</h6>
-      <img src={props.thumbnail} alt={props.title} />
+      <img
+        src={video.snippet.thumbnails.medium.url}
+        alt={video.snippet.title}
+        onClick={() => onClickThumbnail(video.id.videoId)}
+      />
+      <font size='10px'>{video.snippet.title}</font>
     </div>
   );
 };

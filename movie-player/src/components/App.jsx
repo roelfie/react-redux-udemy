@@ -15,13 +15,20 @@ class App extends React.Component {
       });
   };
 
+  playVideo = (videoId) => {
+    console.log(videoId);
+  };
+
   render() {
     return (
       <div className='ui container'>
         <h2>Movie Player</h2>
         <SearchBar onSubmit={(term) => this.findVideos(term)} />
         <VideoDetails />
-        <VideoList videos={this.state.videos} />
+        <VideoList
+          videos={this.state.videos}
+          onClickThumbnail={(videoId) => this.playVideo(videoId)}
+        />
       </div>
     );
   }
