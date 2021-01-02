@@ -42,12 +42,12 @@ After generating a new React app (with the default template) I follow these step
 4. Fix `index.html`:
 
    - Delete references to `manifest.json` and `favicon.ico`
-   - Add semantic UI:
+   - Add fomantic UI (a.k.a. semantic ui):
 
    ```html
    <link
      rel="stylesheet"
-     href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+     href="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.8.7/semantic.min.css"
    />
    ```
 
@@ -499,7 +499,7 @@ In the `movie-player` application we bring together all the techniques learned s
 - State
 - Lifecycle methods
 - HTTP Requests (Axios)
-- Styling (Semantic UI)
+- Styling (Fomantic UI)
 
 # Section 12: Hooks
 
@@ -523,6 +523,54 @@ Hooks help you write reusable code. Other hooks built in to React:
 
 The `widgets` application is built with functional components and uses hooks to add state, lifecycle methods & other advanced stuff.
 
+### useState
+
+Allows you to define a container and a setter a 'piece of state'. In this example we use `useState` to store the active element of an accordion:
+
+```js
+import React, { useState } from "react";
+
+const Accordion = (props) => {
+  // Initialize state (holder & setter)
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const onTitleClick = (index) => {
+    // Update state
+    setActiveIndex(index);
+  };
+
+  const renderedItems = props.items.map((item, index) => {
+    // Use state
+    const activeStyle = index === activeIndex ? "active" : "";
+
+    return (
+      <React.Fragment key={item.title}>
+        <div className={`title ${activeStyle}`} onClick={() => onTitleClick(index)}>
+          <i className='dropdown icon'></i>
+          {item.title}
+        </div>
+        <div className={`content ${activeStyle}`}>
+          <p>{item.description}</p>
+        </div>
+      </React.Fragment>
+    );
+  });
+
+  return <div className='ui styled accordion'>{renderedItems}</div>;
+};
+```
+
+### useEffect
+
+The `useEffect` hook mimics lifecycle and can be configured to run some code when:
+
+- component renders for the first time
+  - `useEffect(() => { ... }, []);`
+- component renders or re-renders
+  - `useEffect(() => { ... });`
+- component renders or re-renders and some piece of data (state) has changed
+  - `useEffect(() => { ... }, [state]);`
+
 # References
 
 ### React
@@ -538,7 +586,7 @@ The `widgets` application is built with functional components and uses hooks to 
 - [Babel](https://babeljs.io/repl)
 - [Prettier](https://prettier.io/) VSCode formatter plugin
   - Open VSCode `settings.json` ('Open Settings (JSON)' command) and add the following line: `"editor.defaultFormatter": "esbenp.prettier-vscode"`. Optionally, set 'Format on save' = true.
-- [Semantic UI](https://semantic-ui.com/)
+- [Fomantic UI](https://fomantic-ui.com/) (a.k.a. Semantic UI)
 
 ### JavaScript libraries
 

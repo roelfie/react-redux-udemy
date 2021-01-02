@@ -1,7 +1,8 @@
 import React from "react";
-import Accordion from "./Accordion";
+// import Accordion from "./Accordion";
+import Search from "./Search";
 
-const items = [
+const accordionItems = [
   {
     title: "Question 1",
     description: "Answer 1"
@@ -19,7 +20,8 @@ const items = [
 function App() {
   return (
     <div>
-      <Accordion items={items} />
+      {/* <Accordion items={accordionItems} /> */}
+      <Search />
     </div>
   );
 }
