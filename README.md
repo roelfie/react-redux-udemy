@@ -9,7 +9,9 @@ My system:
 - Node v14.15.1
 - npm 6.14.8
 
-Generating a new React app:
+### Generating a React app
+
+Each React application created during this course is generated using `create-react-app`:
 
 ```js
 $ npx create-react-app myapp
@@ -17,11 +19,39 @@ $ cd myapp
 $ npm start
 ```
 
-Libraries included in a new React app by default:
+Libraries included in each new React app:
 
 - Babel (tool for converting JavaScript to an older, more widely supported version)
 - Webpack
 - Dev Server
+
+#### Cleanup
+
+After generating a new React app (with the default template) I follow these steps:
+
+1. Add to `.gitignore`:
+
+   ```
+   .eslintcache
+   ```
+
+2. Remove everything from `./src`
+
+3. Remove everything from `./public` except `./public/index.html`
+
+4. Fix `index.html`:
+
+   - Delete references to `manifest.json` and `favicon.ico`
+   - Add semantic UI:
+
+   ```html
+   <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+   />
+   ```
+
+### React Components
 
 A React component is a function or a class that produces HTML (JSX) and handles feedback (event handlers). Example of a function based component:
 
@@ -126,6 +156,8 @@ const App = () => {
 ```
 
 # Section 4: Class-based Components
+
+**Application: `seasons`**
 
 ### Class components vs. Function components
 
@@ -235,6 +267,8 @@ class Clock extends React.Component {
 ```
 
 # Section 7: Forms and Events
+
+**Application: `image-finder`**
 
 ### Uncontrolled vs. controlled form elements
 
@@ -451,6 +485,8 @@ class ImageCard extends React.Component {
 
 # Section 11: Movie Player app
 
+**Application: `movie-player`**
+
 In the `movie-player` application we bring together all the techniques learned so far:
 
 - Functional components vs. Class-based components
@@ -461,6 +497,26 @@ In the `movie-player` application we bring together all the techniques learned s
 - Styling (Semantic UI)
 
 # Section 12: Hooks
+
+**Application: `widgets`**
+
+Hooks allow you to add extra capabilities to functional components.
+
+- `useState` lets you use state
+- `useEffect` somehow mimic lifecycle
+- `useRef` lets you create a Ref
+
+Hooks help you write reusable code.
+
+Other hooks built in to React:
+
+- `useContext`
+- `useReducer`
+- `useCallback`
+- `useMemo`
+- `useImperativeHandle`
+- `useLayoutEffect`
+- `useDebugValue`
 
 # References
 
