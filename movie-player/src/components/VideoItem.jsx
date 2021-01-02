@@ -1,14 +1,17 @@
+import "./VideoItem.css";
 import React from "react";
 
 const VideoItem = ({ video, onClickThumbnail }) => {
   return (
-    <div>
+    <div className='item video-item' onClick={() => onClickThumbnail(video.id.videoId)}>
       <img
+        className='ui image'
         src={video.snippet.thumbnails.medium.url}
         alt={video.snippet.title}
-        onClick={() => onClickThumbnail(video.id.videoId)}
       />
-      <font size='10px'>{video.snippet.title}</font>
+      <div className='content'>
+        <div className='header'>{video.snippet.title}</div>
+      </div>
     </div>
   );
 };
