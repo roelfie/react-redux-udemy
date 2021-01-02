@@ -1,9 +1,8 @@
 import React from "react";
-import Loader from "./Loader";
 
 const VideoPlayer = ({ video }) => {
   if (!video) {
-    return <Loader text='Please select a video' />;
+    return <div />;
   }
 
   const videoSource = `https://www.youtube.com/embed/${video.id.videoId}`;

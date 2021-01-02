@@ -23,11 +23,19 @@ class App extends React.Component {
       <div className='ui container'>
         <h2>Movie Player</h2>
         <SearchBar onSubmit={(term) => this.findVideos(term)} />
-        <VideoPlayer video={this.state.selectedVideo} />
-        <VideoList
-          videos={this.state.videos}
-          onVideoSelect={(video) => this.setState({ selectedVideo: video })}
-        />
+        <div className='ui grid'>
+          <div className='ui row'>
+            <div className='eleven wide column'>
+              <VideoPlayer video={this.state.selectedVideo} />
+            </div>
+            <div className='five wide column'>
+              <VideoList
+                videos={this.state.videos}
+                onVideoSelect={(video) => this.setState({ selectedVideo: video })}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
