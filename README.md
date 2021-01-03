@@ -571,6 +571,31 @@ The `useEffect` hook mimics lifecycle and can be configured to run some code whe
 - component renders or re-renders and some piece of data (state) has changed
   - `useEffect(() => { ... }, [state]);`
 
+#### useEffect cleanup
+
+The function provided to `useEffect` can return an optional cleanup function. This cleanup function will be executed on the next execution of `useEffect`. Example of a Wikipedia search widget that calls the Wikipedia API 500ms after the last keystroke:
+
+```js
+useEffect(() => {
+  if (searchTerm) {
+    const timeoutId = setTimeout(() => {
+      Wikipedia.search(searchTerm)
+        .catch((err) => console.log(err))
+        .then((response) => setItems(response.data.query.search));
+    }, 500);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }
+}, [searchTerm]);
+```
+
+#### Warning: React Hook useEffect has a missing dependency
+
+If you reference a piece of state inside `useEffect` that is not included in the state array passed into `useEffect`, React will give this warning: _React Hook useEffect has a missing dependency_.
+Section 12 (Hooks) Video 169 (Optional Video: Fixing a Warning) gives a solution.
+
 # References
 
 ### React

@@ -8,9 +8,17 @@ const Search = () => {
   // The following 'effect' is only executed when the searchTerm changes.
   useEffect(() => {
     if (searchTerm) {
-      Wikipedia.search(searchTerm)
-        .catch((err) => console.log(err))
-        .then((response) => setItems(response.data.query.search));
+      const timeoutId = setTimeout(() => {
+        Wikipedia.search(searchTerm)
+          .catch((err) => console.log(err))
+          .then((response) => setItems(response.data.query.search));
+      }, 500);
+
+      // This 'cleanup function' will be executed as soon as this effect executes the next time.
+      // The effect of this cleanup function is that no API call is done as long as user is typing.
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
   }, [searchTerm]);
 
