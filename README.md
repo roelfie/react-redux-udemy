@@ -573,7 +573,12 @@ The `useEffect` hook mimics lifecycle and can be configured to run some code whe
 
 #### useEffect cleanup
 
-The function provided to `useEffect` can return an optional cleanup function. This cleanup function will be executed on the next execution of `useEffect`. Example of a Wikipedia search widget that calls the Wikipedia API 500ms after the last keystroke:
+The function provided to `useEffect` can return an optional cleanup function. This cleanup function will be executed
+
+- on the next execution of `useEffect`
+- when the component is removed from the DOM
+
+Example of a Wikipedia search widget that calls the Wikipedia API 500ms after the last keystroke:
 
 ```js
 useEffect(() => {
@@ -597,6 +602,19 @@ If you reference a piece of state inside `useEffect` that is not included in the
 Section 12 (Hooks) Video 169 (Optional Video: Fixing a Warning) gives a solution.
 
 ### useRef
+
+**Widget: `widgets/Dropdown`**
+
+The `useRef` hook gives you a reference to a DOM element, similar to `React.createRef()` for class-based components (section 10).
+
+#### Note on event bubbling
+
+If multiple elements in the DOM hierarchy have an event handler defined for the same event, they will all be invoked. They are invoked in the following order:
+
+1. by default propagated from the innermost to the outermost element
+2. but event handlers defined with `addEventListener()` are invoked first
+
+This means that, depending on how you've set up your DOM, events are not necessarilly propagated linearly.
 
 # References
 

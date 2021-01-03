@@ -1,7 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Dropdown = ({ options, selected, onSelectedChange, defaultText }) => {
   const [open, setOpen] = useState(false);
+  const dropdownRef = useRef();
+
+  // Effect that is executed only on first render
+  useEffect(() => {
+    const onBodyClick = (event) => {
+      if (dropdownRef.current && dropdownRef.current.contains(event.target)) {
+        // Clicked inside dropdown
+        return;
+      }
+      // Clicked outside dropdown
+      setOpen(false);
+    };
+
+    document.body.addEventListener("click", onBodyClick);
+
+    // Remove this event listener when the dropdown is removed from the DOM
+    // (or it will cause errors because the ref does not exist anymore).
+    return () => {
+      document.body.removeEventListener("click", onBodyClick);
+    };
+  }, []);
+
+  // With capturing, the event is first captured by the outermost element and propagated to the inner elements.
 
   const renderedOptions = options.map((option) => {
     if (option.value === selected.value) {
@@ -19,6 +42,7 @@ const Dropdown = ({ options, selected, onSelectedChange, defaultText }) => {
       <div className='field'>
         <label className='label'>{defaultText}</label>
         <div
+          ref={dropdownRef}
           onClick={() => setOpen(!open)}
           className={`ui selection dropdown ${open ? "visible active" : ""}`}
         >
