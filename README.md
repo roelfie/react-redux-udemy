@@ -596,6 +596,8 @@ useEffect(() => {
 If you reference a piece of state inside `useEffect` that is not included in the state array passed into `useEffect`, React will give this warning: _React Hook useEffect has a missing dependency_.
 Section 12 (Hooks) Video 169 (Optional Video: Fixing a Warning) gives a solution.
 
+### useRef
+
 # References
 
 ### React
