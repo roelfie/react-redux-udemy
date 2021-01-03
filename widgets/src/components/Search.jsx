@@ -10,16 +10,18 @@ const Search = () => {
     if (searchTerm) {
       Wikipedia.search(searchTerm)
         .catch((err) => console.log(err))
-        .then((response) => {
-          console.log(response.data.query.search);
-          setItems(response.data.query.search);
-        });
+        .then((response) => setItems(response.data.query.search));
     }
   }, [searchTerm]);
 
   const renderedItems = items.map((item) => {
     return (
       <div className='item' key={item.pageid}>
+        <div className='right floated content'>
+          <a className='ui button' href={`https://en.wikipedia.org/wiki?curid=${item.pageid}`}>
+            Open
+          </a>
+        </div>
         <div className='content'>
           <div className='header'>{item.title}</div>
           <span dangerouslySetInnerHTML={{ __html: item.snippet }}></span>
