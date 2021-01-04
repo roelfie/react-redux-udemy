@@ -706,6 +706,15 @@ If multiple elements in the DOM hierarchy have an event handler defined for the 
 
 This means that, depending on how you've set up your DOM, events are not necessarilly propagated linearly.
 
+# Section 13: Navigation
+
+Navigation can be implemented
+
+- from scratch
+- with the `React Router` library
+
+In the `widgets` application we build navigation from scratch. A later application will use React Router (Section 20).
+
 # References
 
 ### React
