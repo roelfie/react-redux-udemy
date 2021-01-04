@@ -3,29 +3,30 @@ import Google from "../api/Google";
 
 const LanguageConverter = ({ language, text }) => {
   const [output, setOutput] = useState("");
+  const [debouncedText, setDebouncedText] = useState(text);
 
-  // Whenever language or text changes, translate
+  // Update debouncedText after X ms
   useEffect(() => {
-    if (text) {
-      const timeoutId = setTimeout(() => {
-        Google.translate(text, language)
-          .catch((err) => console.log(err))
-          .then(({ data }) => {
-            if (data.data.translations[0]) {
-              setOutput(data.data.translations[0].translatedText);
-            } else {
-              setOutput("No translation found.");
-            }
-          });
-      }, 400);
+    const timeoutId = setTimeout(() => {
+      setDebouncedText(text);
+    }, 400);
+    return () => clearTimeout(timeoutId);
+  }, [text]);
 
-      // This 'cleanup function' will be executed as soon as this effect executes the next time.
-      // The effect of this cleanup function is that no API call is done as long as user is typing.
-      return () => {
-        clearTimeout(timeoutId);
-      };
+  // Call API whenever debouncedText or language changes
+  useEffect(() => {
+    if (debouncedText) {
+      Google.translate(debouncedText, language)
+        .catch((err) => console.log(err))
+        .then(({ data }) => {
+          if (data.data.translations[0]) {
+            setOutput(data.data.translations[0].translatedText);
+          } else {
+            setOutput("No translation found.");
+          }
+        });
     }
-  }, [language, text]);
+  }, [language, debouncedText]);
 
   return <div>{output}</div>;
 };

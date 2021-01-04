@@ -573,6 +573,8 @@ The `useEffect` hook mimics lifecycle and can be configured to run some code whe
 - component renders or re-renders and some piece of data (state) has changed
   - `useEffect(() => { ... }, [state]);`
 
+It basically serves as an onChange event handler for state.
+
 #### Implement throttling using the useEffect cleanup function
 
 The function provided to `useEffect` can return an optional cleanup function. This cleanup function will be executed
