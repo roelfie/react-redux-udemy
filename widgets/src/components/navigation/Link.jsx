@@ -2,6 +2,10 @@ import React from "react";
 
 const Link = ({ path, children }) => {
   const onClick = (event) => {
+    if (event.metaKey || event.ctrlKey) {
+      return; // allow opening menu item in new browser tab.
+    }
+
     // Prevent full page reload
     event.preventDefault();
 
