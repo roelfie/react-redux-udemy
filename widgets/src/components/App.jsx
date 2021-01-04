@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 // import Accordion from "./Accordion";
 // import Search from "./Search";
-import Dropdown from "./Dropdown";
+// import Dropdown from "./Dropdown";
+import Translator from "./Translator";
 
 const accordionItems = [
   {
@@ -32,19 +33,21 @@ const dropdownOptions = [
     value: "Blue"
   }
 ];
+
 function App() {
-  const [selectedColor, setSelectedColor] = useState(dropdownOptions[0]);
+  // const [selectedColor, setSelectedColor] = useState(dropdownOptions[0]);
 
   return (
-    <div>
+    <div className='ui container'>
       {/* <Accordion items={accordionItems} /> */}
       {/* <Search /> */}
-      <Dropdown
+      {/* <Dropdown
         selected={selectedColor}
         onSelectedChange={setSelectedColor}
-        defaultText='Color'
+        label='Color'
         options={dropdownOptions}
-      />
+      /> */}
+      <Translator />
     </div>
   );
 }

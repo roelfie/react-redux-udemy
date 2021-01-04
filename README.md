@@ -562,6 +562,8 @@ const Accordion = (props) => {
 
 ### useEffect
 
+**Widget: `widgets/Search`**
+
 The `useEffect` hook mimics lifecycle and can be configured to run some code when:
 
 - component renders for the first time
@@ -571,29 +573,115 @@ The `useEffect` hook mimics lifecycle and can be configured to run some code whe
 - component renders or re-renders and some piece of data (state) has changed
   - `useEffect(() => { ... }, [state]);`
 
-#### useEffect cleanup
+#### Implement throttling using the useEffect cleanup function
 
 The function provided to `useEffect` can return an optional cleanup function. This cleanup function will be executed
 
 - on the next execution of `useEffect`
 - when the component is removed from the DOM
 
-Example of a Wikipedia search widget that calls the Wikipedia API 500ms after the last keystroke:
+Example of a Wikipedia search widget that calls the Wikipedia API with a search 'term' 500ms after the last keystroke:
 
 ```js
-useEffect(() => {
-  if (searchTerm) {
-    const timeoutId = setTimeout(() => {
-      Wikipedia.search(searchTerm)
+import React, { useState, useEffect } from "react";
+import Wikipedia from "../api/Wikipedia";
+
+const Search = () => {
+  const [term, setTerm] = useState("");
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    if (term) {
+      const timeoutId = setTimeout(() => {
+        Wikipedia.search(term)
+          .catch((err) => console.log(err))
+          .then((response) => setItems(response.data.query.search));
+      }, 500);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [term]);
+
+  const renderedItems = items.map((item) => {
+    return (
+      <div key={item.pageid}>
+        <div>{item.title}</div>
+        <p>{item.snippet}</p>
+      </div>
+    );
+  });
+
+  return (
+    <div>
+      <input value={term} onChange={(evt) => setTerm(evt.target.value)} />
+      <div>{renderedItems}</div>
+    </div>
+  );
+};
+```
+
+#### Throttling & debounce
+
+The previous example shows how to throttle API calls: We don't call the API until the user has paused typing for 500ms.
+Remaining problem: If the user has searched for `cow` then types `s` followed by `Backspace` the API will be called with the unchanged search term `cow`.
+
+To prevent unnecessary API calls we use a technique called debouncing.
+
+- [useDebounce](https://usehooks.com/useDebounce/) on useHooks.com
+- [How to throttle or debounce](https://stackoverflow.com/questions/54666401/how-to-use-throttle-or-debounce-with-react-hook) (Stackoverflow)
+- Sections 169 (Fixing a warning) and 193 (Deboucing translation updates) of the course.
+
+The idea is to use a second piece of state (debouncedTerm) and use two `useEffect` hooks: one for `term` (which sets a timer to update the debouncedTerm after T millis) and one for `debouncedTerm` (which does the API call if debouncedTerm has changed). Like this:
+
+```js
+import React, { useState, useEffect } from "react";
+import Wikipedia from "../api/Wikipedia";
+
+const Search = () => {
+  const [term, setTerm] = useState("");
+  const [debouncedTerm, setDebouncedTerm] = useState(term);
+  const [items, setItems] = useState([]);
+
+  // Copy term to debouncedTerm after 500m
+  useEffect(() => {
+    if (term) {
+      const timeoutId = setTimeout(() => {
+        setDebouncedTerm(term);
+      }, 500);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [term]);
+
+  // Call API as soon as debouncedTerm has changed
+  useEffect(() => {
+    if (debouncedTerm) {
+      Wikipedia.search(debouncedTerm)
         .catch((err) => console.log(err))
         .then((response) => setItems(response.data.query.search));
-    }, 500);
+    }
+  }, [debouncedTerm]);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }
-}, [searchTerm]);
+  const renderedItems = items.map((item) => {
+    return (
+      <div key={item.pageid}>
+        <div>{item.title}</div>
+        <p>{item.snippet}</p>
+      </div>
+    );
+  });
+
+  return (
+    <div>
+      <input value={term} onChange={(evt) => setTerm(evt.target.value)} />
+      <div>{renderedItems}</div>
+    </div>
+  );
+};
 ```
 
 #### Warning: React Hook useEffect has a missing dependency
@@ -609,7 +697,7 @@ The `useRef` hook gives you a reference to a DOM element, similar to `React.crea
 
 #### Note on event bubbling
 
-If multiple elements in the DOM hierarchy have an event handler defined for the same event, they will all be invoked. They are invoked in the following order:
+If multiple elements in the DOM hierarchy have an event handler defined for the same event, they will all be invoked, in the following order:
 
 1. by default propagated from the innermost to the outermost element
 2. but event handlers defined with `addEventListener()` are invoked first
@@ -651,3 +739,5 @@ This means that, depending on how you've set up your DOM, events are not necessa
 
 - [Unsplash](https://unsplash.com/developers) (image-finder)
 - [Google](https://console.developers.google.com/) (movie-player)
+- [Google Translate](https://cloud.google.com/translate/docs/reference/rest/v2/translate)
+- [Wikipedia](https://www.mediawiki.org/wiki/API:Main_page)
