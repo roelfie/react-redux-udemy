@@ -3,38 +3,9 @@ import Accordion from "./Accordion";
 import Search from "./Search";
 import Dropdown from "./Dropdown";
 import Translator from "./Translator";
-import Route from "./Route.js";
-import Header from "./Header";
-
-const accordionItems = [
-  {
-    title: "Question 1",
-    description: "Answer 1"
-  },
-  {
-    title: "Question 2",
-    description: "Answer 2"
-  },
-  {
-    title: "Question 3",
-    description: "Answer 3"
-  }
-];
-
-const dropdownOptions = [
-  {
-    key: "red",
-    value: "Red"
-  },
-  {
-    key: "green",
-    value: "Green"
-  },
-  {
-    key: "blue",
-    value: "Blue"
-  }
-];
+import Route from "./navigation/Route";
+import Header from "./navigation/Header";
+import { accordionItems, dropdownOptions } from "../config/Config";
 
 const tabs = [
   { path: "/", label: "Accordion" },
