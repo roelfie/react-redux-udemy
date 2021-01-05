@@ -740,7 +740,9 @@ Examples:
 
 [Redux](https://redux.js.org/introduction/getting-started) is a state container for JavaScript.
 
-React has its own state management mechanisms, but they are all bound to a component. If you want to share state across components or want to keep it after the component is unmounted, use a store like Redux.
+Standard React state (`this.state` and `useState`) is bound to a single component. If you want to share this state across components, you will have to pass it around using things like `props`.
+
+If your application grows and you have a lot of state that must be shared across components, you can use a centralized state manager like `Redux`.
 
 - [Stackoverflow](https://stackoverflow.com/questions/41584647/when-do-i-choose-react-state-vs-redux-store)
 - [React vs. Redux](https://spin.atomicobject.com/2017/06/07/react-state-vs-redux-state/)
@@ -843,6 +845,96 @@ return [...originalItems, newItem]; // GOOD
 # Section 17: Integrating React with Redux
 
 **Application: `songs`**
+
+Below is an example of a very simple React application with just one component (SongList) that integrates with Redux using `Provider` and `connect()` from the `react-redux` library:
+
+**`./redux/reducers/index.js`**
+
+```js
+import { combineReducers } from "redux";
+
+const songs = [
+  { title: "Ninjago Overtue", duration: "4:05" },
+  { title: "The Weekend Whip", duration: "8:54" },
+  { title: "The Croc Swamp", duration: "7:35" },
+  { title: "Hills of Chima", duration: "3:33" }
+];
+
+// Reducers are responsible for managing state (based on actions).
+// In this example we have just one reducer that returns a static list.
+const songsReducer = () => {
+  return songs;
+};
+
+export default combineReducers({ songs: songsReducer });
+```
+
+**`./App.jsx`**
+
+```js
+import React from "react";
+import SongList from "./components/SongList";
+
+const App = () => {
+  return (
+    <div>
+      <h2>Songs</h2>
+      <SongList />
+    </div>
+  );
+};
+
+export default App;
+```
+
+**`./components/SongList.jsx`**
+
+```js
+import React from "react";
+import { connect } from "react-redux";
+
+class SongList extends React.Component {
+  renderSongs = (songs) => {
+    return songs.map((song) => {
+      return <div key={song.title}>{song.title}</div>;
+    });
+  };
+
+  render() {
+    return <div className='ui divided list'>{this.renderSongs(this.props.songs)}</div>;
+  }
+}
+
+// Boiler plate code: Map state to props (named 'mapStateToProps' by convention)
+const mapStateToProps = (state) => {
+  return {
+    songs: state.songs
+  };
+};
+
+// Boiler plate code: Connect component to Redux
+export default connect(mapStateToProps)(SongList);
+```
+
+**`./index.js`**
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+
+import reducers from "./redux/reducers";
+import App from "./App";
+
+ReactDOM.render(
+  {/* Provider manages the React/Redux integration */}
+  <Provider store={createStore(reducers)}>
+    <App />
+  </Provider>,
+  document.querySelector("#root")
+);
+```
 
 # Appendix: JavaScript
 

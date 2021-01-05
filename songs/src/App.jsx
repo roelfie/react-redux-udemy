@@ -1,4 +1,5 @@
 import React from "react";
+import SongDetails from "./components/SongDetails";
 import SongList from "./components/SongList";
 
 const App = () => {
@@ -10,7 +11,9 @@ const App = () => {
           <div className='ui column eight wide'>
             <SongList />
           </div>
-          <div className='ui column eight wide'></div>
+          <div className='ui column eight wide'>
+            <SongDetails />
+          </div>
         </div>
       </div>
     </div>
