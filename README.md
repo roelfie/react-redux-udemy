@@ -940,10 +940,85 @@ ReactDOM.render(
 
 **Application: `blog`**
 
-With a plain basic Redux store, you can only do simple synchronous updates by dispatching an action. The [redux-thunk](https://github.com/reduxjs/redux-thunk) middleware extends the store's abilities, and lets you write
+With a plain basic Redux store, you can only do simple synchronous updates by dispatching an action. The [redux-thunk](https://github.com/reduxjs/redux-thunk) middleware extends the store's abilities, and allows you to write action creators that perform async logic (like API calls).
 
-- complex synchronous logic that needs access to the store
-- simple async logic like AJAX requests
+### API requests from action creators (BAD)
+
+In a Redux application the action creators are responsible for making API requests. They are typically called from lifecycle methods like `componentDidMount` and `componentDidUpdate`. And they are typically performed asynchronously.
+
+You would expect an asynchronous API call to be implemented something like this:
+
+```js
+import typicode from "../api/Typicode";
+
+export const loadPosts = async () => {
+  const response = await typicode.get("/posts");
+  return {
+    type: "POSTS_UPDATED",
+    payload: response.data
+  };
+};
+```
+
+But when React executes the above action creator it will result in this error message:
+`Error: Actions must be plain objects. Use custom middleware for async actions.`.
+
+It may look like the action creator is returning a plain object, but it is not. On [babeljs.io](https://babeljs.io/repl) you will find that the above simple action creator is transpiled into `es2015` that in fact returns the request returned by the `axios.get()`, i.e. a promise!
+
+Redux detects that this is a promise and not a plain object, and refuses to `store.dispatch()` it, hence the error.
+
+### Redux Thunk
+
+[Redux-Thunk](https://github.com/reduxjs/redux-thunk) is an example of [Redux Middleware](https://redux.js.org/understanding/history-and-design/middleware).
+Middleware sits between the dispatcher and the reducers.
+
+- It gets called with every action we dispatch
+- It can stop or modify an action, or do with it whatever it wants
+  - logging or crash reporting
+  - dealing with async actions
+
+In standard Redux an **action creator must return an action object**.
+
+With Redux-Thunk an **action creator may also return a function**. This function is called by Redux-Thunk with arguments
+`function(dispatcher, getState)`.
+
+If Redux-Thunk receives
+
+- an object, then it simply passes it on to the reducers.
+- a function, then it calls that function with arguments `function(dispatch, getState)`
+
+The function does what it needs to do (e.g. an async API call) and chooses if and when to dispatch the resulting object (or again a function).
+
+### API requests from action creators (GOOD)
+
+Register the Redux-Thunk middleware (irrelevant imports left out):
+
+```js
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+
+const store = createStore(reducers, applyMiddleware(thunk));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+```
+
+The above action creator can now be rewritten to the following:
+
+```js
+import typicode from "../api/Typicode";
+
+export const loadPosts = () => {
+  return async (dispatch, getState) => {
+    const response = await typicode.get("/posts");
+    dispatch({ type: "POSTS_UPDATED", payload: response.data });
+  };
+};
+```
 
 # Appendix: JavaScript
 
