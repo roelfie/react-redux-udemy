@@ -844,7 +844,23 @@ return [...originalItems, newItem]; // GOOD
 
 **Application: `songs`**
 
-# References
+# Appendix: JavaScript
+
+### Named vs. default exports
+
+A **named export** (`export const doSomething = () => { ... }`) is imported like this:
+
+```js
+import { doSomething } from "actions";
+```
+
+A **default export** (`default export doSomething;`) is imported like this:
+
+```js
+import doSomething from "actions";
+```
+
+# Appendix: References
 
 ### React
 

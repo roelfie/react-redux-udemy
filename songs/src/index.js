@@ -1,10 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
 
-class App extends React.Component {
-  render() {
-    return <h1>Songs</h1>;
-  }
-}
+import reducers from "./redux/reducers";
+import App from "./App";
 
-ReactDOM.render(<App />, document.querySelector("#root"));
+ReactDOM.render(
+  <Provider store={createStore(reducers)}>
+    <App />
+  </Provider>,
+  document.querySelector("#root")
+);
