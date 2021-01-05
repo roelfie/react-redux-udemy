@@ -940,6 +940,11 @@ ReactDOM.render(
 
 **Application: `blog`**
 
+With a plain basic Redux store, you can only do simple synchronous updates by dispatching an action. The [redux-thunk](https://github.com/reduxjs/redux-thunk) middleware extends the store's abilities, and lets you write
+
+- complex synchronous logic that needs access to the store
+- simple async logic like AJAX requests
+
 # Appendix: JavaScript
 
 ### Named vs. default exports
