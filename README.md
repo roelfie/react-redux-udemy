@@ -936,6 +936,10 @@ ReactDOM.render(
 );
 ```
 
+# Section 18: Redux Thunk
+
+**Application: `blog`**
+
 # Appendix: JavaScript
 
 ### Named vs. default exports
