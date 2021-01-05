@@ -715,6 +715,135 @@ Navigation can be implemented
 
 In the `widgets` application we build navigation from scratch. A later application will use React Router (Section 20).
 
+# Section 14: Hooks in practice
+
+In this section the class-based components of the `movie-player` application are refactored to functional components using hooks.
+
+### Custom hooks
+
+Custom hooks are (besides components) one of the best ways to create reusable code in React. Take a look at the videos (210-213) in this section to find out about custom hooks.
+
+A custom hook always makes use of one or more standard React hook.
+
+# Section 15: Deployment
+
+Examples:
+
+- [Vercel](https://vercel.com/) - Deploy to Vercel from the command line using the Vercel CLI
+- [Netlify](https://www.netlify.com/) - Automatically re-deploys on github commits
+- AWS S3:
+  - `npm run build`
+  - upload the contents of the `build` folder to S3
+  - open `BUCKET/index.html` in your browser
+
+# Section 16: Redux
+
+[Redux](https://redux.js.org/introduction/getting-started) is a state container for JavaScript.
+
+React has its own state management mechanisms, but they are all bound to a component. If you want to share state across components or want to keep it after the component is unmounted, use a store like Redux.
+
+- [Stackoverflow](https://stackoverflow.com/questions/41584647/when-do-i-choose-react-state-vs-redux-store)
+- [React vs. Redux](https://spin.atomicobject.com/2017/06/07/react-state-vs-redux-state/)
+
+### Redux vs. MobX
+
+[MobX or Redux: Which is Better For React State Management?](https://habr.com/en/post/480692/)
+
+### First example
+
+Run the following snippet on [codepen.io](https://codepen.io):
+
+```js
+// Action creators
+const createPolicy = (name, amount) => {
+  return {
+    type: "CREATE_POLICY",
+    payload: { name: name, amount: amount }
+  };
+};
+const deletePolicy = (name) => {
+  return {
+    type: "DELETE_POLICY",
+    payload: { name: name }
+  };
+};
+const createClaim = (name, amount) => {
+  return {
+    type: "CREATE_CLAIM",
+    payload: { name: name, amountClaimed: amount }
+  };
+};
+
+// Reducers
+const claimsReducer = (claims = [], action) => {
+  if (action.type === "CREATE_CLAIM") {
+    return [...claims, action.payload];
+  }
+  return claims;
+};
+const accountingReducer = (account = { balance: 0 }, action) => {
+  if (action.type === "CREATE_POLICY") {
+    return { balance: account.balance + action.payload.amount };
+  } else if (action.type === "CREATE_CLAIM") {
+    return { balance: account.balance - action.payload.amountClaimed };
+  }
+  return account;
+};
+const policiesReducer = (policyHolders = [], action) => {
+  if (action.type === "CREATE_POLICY") {
+    return [...policyHolders, action.payload.name];
+  } else if (action.type === "DELETE_POLICY") {
+    return policyHolders.filter((name) => name !== action.payload.name);
+  }
+  return policyHolders;
+};
+
+// Redux in action
+const { createStore, combineReducers } = Redux;
+
+// Following structure reflects Redux' state object
+const departments = combineReducers({
+  account: accountingReducer,
+  claims: claimsReducer,
+  policies: policiesReducer
+});
+
+const store = createStore(departments);
+
+store.dispatch(createPolicy("Alex", 25));
+store.dispatch(createPolicy("Bob", 25));
+store.dispatch(createPolicy("Chris", 25));
+store.dispatch(createPolicy("Drew", 25));
+store.dispatch(createClaim("Chris", 40));
+store.dispatch(deletePolicy("Bob"));
+
+console.log(store.getState());
+```
+
+State can only be modified through the dispatcher. You can not modify state directly.
+
+### Redux 'lifecycle'
+
+- Action Creator
+- Action
+- dispatch
+- Reducers
+- State
+
+### Reducers
+
+Do not modify existing data structures inside reducers. Always return new ones.
+
+```js
+originalItems.push(newItem);
+return originalItems; // BAD
+return [...originalItems, newItem]; // GOOD
+```
+
+# Section 17: Integrating React with Redux
+
+**Application: `songs`**
+
 # References
 
 ### React
