@@ -942,9 +942,11 @@ ReactDOM.render(
 
 With a plain basic Redux store, you can only do simple synchronous updates by dispatching an action. The [redux-thunk](https://github.com/reduxjs/redux-thunk) middleware extends the store's abilities, and allows you to write action creators that perform async logic (like API calls).
 
-### API requests from action creators (BAD)
+### Action Creators
 
-In a Redux application the action creators are responsible for making API requests. They are typically called from lifecycle methods like `componentDidMount` and `componentDidUpdate`. And they are typically performed asynchronously.
+Action Creators are responsible for making API requests. **Do not make API requests from components or reducers.** Action Creators are typically called from lifecycle methods like `componentDidMount` and `componentDidUpdate` and they are typically performed asynchronously.
+
+### API requests from action creators (BAD)
 
 You would expect an asynchronous API call to be implemented something like this:
 
@@ -1020,6 +1022,40 @@ export const loadPosts = () => {
 };
 ```
 
+### Reducers
+
+- Never return undefined
+- Produce state using only previous state and the action
+- Should not mutate the input state (best practice; see video 265 ''A misleading rule')
+  - [Lodash](https://lodash.com/) can be helpful in returning new state without mutating the input state.
+
+The signature of a reducer: `myReducer(state, action)`.
+Redux calls the reducer
+
+- 1st time: `myReducer(undefined, action_1)`
+- next times: `myReducer(previousState, action_2..)`
+
+where previousState is the value returned by the previous call to `myReducer`.
+
+```js
+const postsReducer = (posts = [], action) => {
+  if (action.type === "POSTS_UPDATED") {
+    return action.payload;
+  }
+  return posts;
+};
+```
+
+### Warning: Re-rendering of components after dispatching an action
+
+Redux' `state` is a map from reducers (keys) to their state (value). In other words it is the combination of the outputs of all reducers.
+
+In the source code of [combineReducers](https://github.com/reduxjs/redux/blob/a64394d46a74fd3ee502016a12950c44605bd6a0/src/combineReducers.ts#L192) you will see that Redux will only tell React to re-render if one or more reducers has changed their state.
+
+If a Reducer changes the original state object (`originalState.someProp = 'newValue'`) then this change will go undetected (even if the store was actually updated). If all reducers do this, no re-render will take place!
+
+This is why, as a best practice, reducers shouldn't mutate input state.
+
 # Appendix: JavaScript
 
 ### Named vs. default exports
@@ -1057,6 +1093,7 @@ import doSomething from "actions";
 
 - [Axios](https://www.npmjs.com/package/axios)
 - [Faker](https://github.com/marak/Faker.js/)
+- [Lodash](https://lodash.com/) (JavaScript utility library)
 
 ### JavaScript state managers
 

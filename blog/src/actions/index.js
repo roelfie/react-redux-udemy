@@ -6,6 +6,6 @@ import typicode from "../api/Typicode";
 export const loadPosts = () => {
   return async (dispatch, getState) => {
     const response = await typicode.get("/posts");
-    dispatch({ type: "POSTS_UPDATED", payload: response.data });
+    dispatch({ type: "LOAD_POSTS", payload: response.data });
   };
 };

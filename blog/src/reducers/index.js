@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 
 const postsReducer = (posts = [], action) => {
-  if (action.type === "POSTS_UPDATED") {
-    return action.payload;
+  switch (action.type) {
+    case "LOAD_POSTS":
+      return action.payload;
+    default:
+      return posts;
   }
-  return posts;
 };
 
 export default combineReducers({ posts: postsReducer });
