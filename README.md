@@ -11,6 +11,9 @@ My notes of the Udemy course 'Modern React with Redux'
   - [Modern React with Redux](https://www.udemy.com/course/react-redux/learn/lecture/12531046#overview) (Udemy)
   - [Manage Complex State in React Apps with MobX](https://egghead.io/courses/manage-complex-state-in-react-apps-with-mobx) (egghead.io)
   - [React State Management](https://www.linkedin.com/learning/react-state-management/) (LinkedIn Learning)
+- Courses (OAuth)
+  - [The Nuts and Bolts of OAuth 2.0](https://www.udemy.com/course/oauth-2-simplified/) (Udemy)
+  - [OAuth and OpenID Connect](https://www.linkedin.com/learning/web-security-oauth-and-openid-connect-2/) (LinkedIn Learning)
 - Tools
   - [React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
   - [CodeSandbox](http://react.new/)
@@ -22,6 +25,7 @@ My notes of the Udemy course 'Modern React with Redux'
   - [Axios](https://www.npmjs.com/package/axios)
   - [Faker](https://github.com/marak/Faker.js/) (`basics` app)
   - [Lodash](https://lodash.com/) (`blog` app)
+  - [Google API JavaScript client](https://github.com/google/google-api-javascript-client)
 - JavaScript state managers
   - [Redux](https://redux.js.org/) ([Thunk](https://github.com/reduxjs/redux-thunk))
   - [Mobx](https://mobx.js.org/README.html)
@@ -1179,6 +1183,28 @@ A React application is typically a single page application that is served by `/i
 - React Dev web server is configured to return `/index.html`.
 
 In other words, your bookmarks for specific pages inside your React app won't work, unless you configure your web server so that it routes those paths to `/index.html`.
+
+# Section 21: Authentication with OAuth
+
+[OAuth 2.0](https://oauth.net/2/) allows us to use Google authentication to let users login to our application.
+
+[Scope](https://oauth.net/2/scope/) is a mechanism in OAuth 2.0 to limit an application's access to a user's account. An application can request one or more scopes, this information is then presented to the user in the consent screen, and the access token issued to the application will be limited to the scopes granted.
+
+### Google API
+
+We are going to use the [Google API](https://developers.google.com/identity/protocols/oauth2) to authenticate our users.
+
+In our Streams application we are only interested in the user's email address. So we will choose the ['profile' or 'email' scope](https://developers.google.com/identity/protocols/oauth2/scopes#google-sign-in) from the [OAuth 2.0 Scopes for Google APIs](https://developers.google.com/identity/protocols/oauth2/scopes).
+
+You can use OAuth on the server or in the client. In our case we use OAuth for JS Browser Apps.
+
+### Integrating OAuth in React
+
+Setup an OAuth 2.0 project in the [Google API Console](https://console.developers.google.com/).
+
+- [Using OAuth 2.0 to Access Google APIs](https://developers.google.com/identity/protocols/oauth2/javascript-implicit-flow) for JavaScript web apps
+- [API Reference](https://developers.google.com/identity/sign-in/web/reference)
+- [Github](https://github.com/google/google-api-javascript-client)
 
 # Appendix: JavaScript
 
