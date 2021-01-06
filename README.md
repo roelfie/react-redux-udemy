@@ -2,6 +2,40 @@
 
 My notes of the Udemy course 'Modern React with Redux'
 
+# References
+
+- React
+  - [React](https://reactjs.org/)
+  - [Create-react-app](https://create-react-app.dev/)
+- Courses
+  - [Modern React with Redux](https://www.udemy.com/course/react-redux/learn/lecture/12531046#overview) (Udemy)
+  - [Manage Complex State in React Apps with MobX](https://egghead.io/courses/manage-complex-state-in-react-apps-with-mobx) (egghead.io)
+  - [React State Management](https://www.linkedin.com/learning/react-state-management/) (LinkedIn Learning)
+- Tools
+  - [React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+  - [CodeSandbox](http://react.new/)
+  - [Codepen.io](https://codepen.io/)
+  - [Babel](https://babeljs.io/repl)
+  - [Prettier](https://prettier.io/) VSCode formatter plugin (\*)
+  - [Fomantic UI](https://fomantic-ui.com/) (a.k.a. Semantic UI)
+- JavaScript libraries
+  - [Axios](https://www.npmjs.com/package/axios)
+  - [Faker](https://github.com/marak/Faker.js/) (`basics` app)
+  - [Lodash](https://lodash.com/) (`blog` app)
+- JavaScript state managers
+  - [Redux](https://redux.js.org/) ([Thunk](https://github.com/reduxjs/redux-thunk))
+  - [Mobx](https://mobx.js.org/README.html)
+- Browser APIs
+  - [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) (`seasons` app)
+- REST APIs
+  - [{JSON}Placeholder](https://jsonplaceholder.typicode.com/) (`blog` app)
+  - [Unsplash](https://unsplash.com/developers) (`image-finder` app)
+  - [Google](https://console.developers.google.com/) (`movie-player` app)
+  - [Google Translate](https://cloud.google.com/translate/docs/reference/rest/v2/translate) (`widgets` app)
+  - [Wikipedia](https://www.mediawiki.org/wiki/API:Main_page) (`widgets` app)
+
+(\*) Open VSCode `settings.json` ('Open Settings (JSON)' command) and add the following line: `"editor.defaultFormatter": "esbenp.prettier-vscode"`. Optionally, set 'Format on save' = true.
+
 # Section 1: Introduction
 
 My system:
@@ -1111,6 +1145,18 @@ export const loadPostsAndUsers = () => {
 
 Instead of passing in the userId to the UserHeader component, and make each component responsible for loading its own data, the list component now triggers the loading of all the different users and passes the complete user object on to the child components (UserHeader).
 
+# Section 20: Navigation with React Router
+
+**Application: `streams`**
+
+Features:
+
+- React Router
+- Authentication (OAuth)
+- Forms
+- CRUD
+- Error handling
+
 # Appendix: JavaScript
 
 ### Named vs. default exports
@@ -1126,42 +1172,3 @@ A **default export** (`default export doSomething;`) is imported like this:
 ```js
 import doSomething from "actions";
 ```
-
-# Appendix: References
-
-### React
-
-- [React](https://reactjs.org/)
-- [create-react-app](https://create-react-app.dev/)
-- [Udemy - Modern React with Redux](https://www.udemy.com/course/react-redux/learn/lecture/12531046#overview)
-
-### Tools
-
-- [React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-- [CodeSandbox](http://react.new/)
-- [Babel](https://babeljs.io/repl)
-- [Prettier](https://prettier.io/) VSCode formatter plugin
-  - Open VSCode `settings.json` ('Open Settings (JSON)' command) and add the following line: `"editor.defaultFormatter": "esbenp.prettier-vscode"`. Optionally, set 'Format on save' = true.
-- [Fomantic UI](https://fomantic-ui.com/) (a.k.a. Semantic UI)
-
-### JavaScript libraries
-
-- [Axios](https://www.npmjs.com/package/axios)
-- [Faker](https://github.com/marak/Faker.js/)
-- [Lodash](https://lodash.com/) (JavaScript utility library)
-
-### JavaScript state managers
-
-- [Redux](https://redux.js.org/)
-- [Mobx](https://mobx.js.org/README.html)
-
-### Browser APIs
-
-- [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)
-
-### REST APIs
-
-- [Unsplash](https://unsplash.com/developers) (image-finder)
-- [Google](https://console.developers.google.com/) (movie-player)
-- [Google Translate](https://cloud.google.com/translate/docs/reference/rest/v2/translate)
-- [Wikipedia](https://www.mediawiki.org/wiki/API:Main_page)
