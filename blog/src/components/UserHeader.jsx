@@ -1,13 +1,7 @@
 import React from "react";
 import faker from "faker";
-import { connect } from "react-redux";
-import { loadUser } from "../actions";
 
 class UserHeader extends React.Component {
-  componentDidMount() {
-    this.props.loadUser(this.props.userId);
-  }
-
   render() {
     const user = this.props.user;
 
@@ -28,9 +22,4 @@ class UserHeader extends React.Component {
   }
 }
 
-const mapStateToProps = (state, props) => {
-  const user = state.users.find((user) => user.id === props.userId);
-  return { user };
-};
-
-export default connect(mapStateToProps, { loadUser })(UserHeader);
+export default UserHeader;

@@ -1058,7 +1058,7 @@ If a Reducer changes the original state object (`originalState.someProp = 'newVa
 
 This is why, as a best practice, reducers shouldn't mutate input state.
 
-### Memoizing async functions wih Lodash
+### Memoizing async functions with Lodash
 
 The `blog` application displays a list of 100 blog posts and loads the user details for the author of each of the posts. There are 10 different authors each of which has written 10 blog posts.
 
@@ -1091,6 +1091,25 @@ const _loadUser = _.memoize(async (id, dispatch) => {
   dispatch({ type: "LOAD_USER", payload: response.data });
 });
 ```
+
+**NB: There is no way to invalidate these cached function calls. If you want to reload a user (for instance because it was updated) you can't.**
+
+### Combining action creators
+
+An alternative solution to prevent duplicate API calls is to combine the `loadPosts` and `loadUser` action creators into one (see `blog` application):
+
+```js
+export const loadPostsAndUsers = () => {
+  return async (dispatch, getState) => {
+    await dispatch(loadPosts());
+
+    const userIds = _.uniq(_.map(getState().posts, "userId"));
+    userIds.forEach((id) => dispatch(loadUser(id)));
+  };
+};
+```
+
+Instead of passing in the userId to the UserHeader component, and make each component responsible for loading its own data, the list component now triggers the loading of all the different users and passes the complete user object on to the child components (UserHeader).
 
 # Appendix: JavaScript
 
