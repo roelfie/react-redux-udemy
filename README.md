@@ -1151,11 +1151,34 @@ Instead of passing in the userId to the UserHeader component, and make each comp
 
 Features:
 
-- React Router
-- Authentication (OAuth)
-- Forms
-- CRUD
+- React Router (section 20)
+- Authentication (OAuth) (section 21)
+- Forms (section 23)
+- CRUD (section 24)
 - Error handling
+
+### Types of Routers
+
+[ReactRouter](https://reactrouter.com/) comes with 3 types of routers. Which one to use depends on your deployment situation (what web server you use and how you can/want to configure it).
+
+- BrowserRouter
+  - path `/page1` => url `https://host:port/page1`
+  - configure your web server to route all unknowns to `index.html`.
+- HashRouter
+  - path `/page1` => url `https://host:port/#/page1`
+  - configure your web server to ignore everything behind `#`.
+- MemoryRouter
+  - path `/page1` => url `https://host:port`
+  - URL is constant. Easy to deploy but no way to bookmark parts of your application.
+
+#### Traditional web server vs. React Dev server
+
+A React application is typically a single page application that is served by `/index.html`. Web servers automatically serve `index.html` if you request `/`. But what happens if you request a resource `/page2` that the server doesn't know of (NB: the React Router path `/page2` only has meaning inside the React application, which runs inside the browser)?
+
+- Traditional web server will return HTTP 404 by default.
+- React Dev web server is configured to return `/index.html`.
+
+In other words, your bookmarks for specific pages inside your React app won't work, unless you configure your web server so that it routes those paths to `/index.html`.
 
 # Appendix: JavaScript
 
