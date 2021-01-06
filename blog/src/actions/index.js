@@ -1,4 +1,5 @@
 import typicode from "../api/Typicode";
+import _ from "lodash";
 
 // This action creator returns a function instead of an object.
 // Redux-Thunk will execute this function,
@@ -11,9 +12,11 @@ export const loadPosts = () => {
 };
 
 export const loadUser = (id) => {
-  return async (dispatch, getState) => {
-    console.log(`loadUser(${id})`);
-    const response = await typicode.get(`/users/${id}`);
-    dispatch({ type: "LOAD_USER", payload: response.data });
-  };
+  return (dispatch, getState) => _loadUser(id, dispatch);
 };
+
+const _loadUser = _.memoize(async (id, dispatch) => {
+  console.log(`loadUser(${id})`);
+  const response = await typicode.get(`/users/${id}`);
+  dispatch({ type: "LOAD_USER", payload: response.data });
+});

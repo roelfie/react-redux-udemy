@@ -1022,6 +1022,8 @@ export const loadPosts = () => {
 };
 ```
 
+# Section 19: Redux Store Design
+
 ### Reducers
 
 - Never return undefined
@@ -1055,6 +1057,40 @@ In the source code of [combineReducers](https://github.com/reduxjs/redux/blob/a6
 If a Reducer changes the original state object (`originalState.someProp = 'newValue'`) then this change will go undetected (even if the store was actually updated). If all reducers do this, no re-render will take place!
 
 This is why, as a best practice, reducers shouldn't mutate input state.
+
+### Memoizing async functions wih Lodash
+
+The `blog` application displays a list of 100 blog posts and loads the user details for the author of each of the posts. There are 10 different authors each of which has written 10 blog posts.
+
+You could use an action creator like this:
+
+```js
+const loadUser = (id) => {
+  return async (dispatch, getState) => {
+    console.log(`loadUser(${id})`);
+    const response = await typicode.get(`/users/${id}`);
+    dispatch({ type: "LOAD_USER", payload: response.data });
+  };
+};
+```
+
+but this will result in each user being looked up 10 times. We need to 'memoize' our function calls. Lodash has a `_.memoize()` function for this purpose. But simply memoizing loaduser or the inner async function will not work (there will still be 10 requests per user).
+
+The correct way to memoize an asynchronous action creator with Lodash is (see video 278 (Memoization issues)):
+
+```js
+import _ from "lodash";
+
+export const loadUser = (id) => {
+  return (dispatch, getState) => _loadUser(id, dispatch);
+};
+
+const _loadUser = _.memoize(async (id, dispatch) => {
+  console.log(`loadUser(${id})`);
+  const response = await typicode.get(`/users/${id}`);
+  dispatch({ type: "LOAD_USER", payload: response.data });
+});
+```
 
 # Appendix: JavaScript
 
