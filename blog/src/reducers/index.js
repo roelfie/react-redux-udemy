@@ -9,4 +9,13 @@ const postsReducer = (posts = [], action) => {
   }
 };
 
-export default combineReducers({ posts: postsReducer });
+const usersReducer = (users = [], action) => {
+  switch (action.type) {
+    case "LOAD_USER":
+      return [...users, action.payload];
+    default:
+      return users;
+  }
+};
+
+export default combineReducers({ posts: postsReducer, users: usersReducer });

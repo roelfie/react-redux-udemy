@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { loadPosts } from "../actions";
+import UserHeader from "./UserHeader";
 
 class PostList extends React.Component {
   componentDidMount() {
@@ -10,15 +11,21 @@ class PostList extends React.Component {
   renderPosts() {
     return this.props.posts.map((post) => {
       return (
-        <div>
-          {post.id}: {post.title}
+        <div className='item' key={post.id}>
+          <div className='content'>
+            <div className='description'>
+              <h2>{post.title}</h2>
+              <p>{post.body}</p>
+            </div>
+            <UserHeader userId={post.userId} />
+          </div>
         </div>
       );
     });
   }
   render() {
-    console.log(this.props.posts);
-    return <div>{this.renderPosts()}</div>;
+    console.log(`PostsList.render(${this.props.posts.length})`);
+    return <div className='ui relaxed divided list'>{this.renderPosts()}</div>;
   }
 }
 

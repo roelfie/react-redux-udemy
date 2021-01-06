@@ -9,3 +9,11 @@ export const loadPosts = () => {
     dispatch({ type: "LOAD_POSTS", payload: response.data });
   };
 };
+
+export const loadUser = (id) => {
+  return async (dispatch, getState) => {
+    console.log(`loadUser(${id})`);
+    const response = await typicode.get(`/users/${id}`);
+    dispatch({ type: "LOAD_USER", payload: response.data });
+  };
+};
