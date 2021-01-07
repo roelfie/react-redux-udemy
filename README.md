@@ -16,6 +16,7 @@ My notes of the Udemy course 'Modern React with Redux'
   - [OAuth and OpenID Connect](https://www.linkedin.com/learning/web-security-oauth-and-openid-connect-2/) (LinkedIn Learning)
 - Tools
   - [React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+  - [Redux Dev Tools extension](https://github.com/zalmoxisus/redux-devtools-extension) (Chrome extension by zalmoxisus)
   - [CodeSandbox](http://react.new/)
   - [Codepen.io](https://codepen.io/)
   - [Babel](https://babeljs.io/repl)
@@ -1209,7 +1210,19 @@ Setup an OAuth 2.0 project in the [Google API Console](https://console.developer
 ### Examples
 
 - [Google Authentication](https://github.com/roelfie/react-redux-udemy/commit/3ff22400d13c093ebd71b005b940614e05c9ff8c) (login status stored in component state)
-- [Google Authentication with Redux](???)
+- [Google Authentication with Redux](https://github.com/roelfie/react-redux-udemy/commit/c38adf439c742871b4b0303eab67e6502aa5b143)
+
+# Section 22: Redux Dev Tools
+
+[Redux DevTools Chrome extension](https://github.com/zalmoxisus/redux-devtools-extension)
+
+Save data in the Redux store between page refreshes:
+
+```
+https://localhost:3000/?debug_session=SOME_KEY
+```
+
+By changing the session id in the URL you can even
 
 # Appendix: JavaScript
 
