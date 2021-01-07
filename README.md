@@ -27,6 +27,7 @@ My notes of the Udemy course 'Modern React with Redux'
   - [Faker](https://github.com/marak/Faker.js/) (`basics` app)
   - [Lodash](https://lodash.com/) (`blog` app)
   - [Google API JavaScript client](https://github.com/google/google-api-javascript-client)
+  - [JSON Server](https://www.npmjs.com/package/json-server) ([github](https://github.com/typicode/json-server))
 - Redux / MobX
   - [Redux](https://redux.js.org/)
   - [Thunk](https://github.com/reduxjs/redux-thunk)
@@ -1234,6 +1235,49 @@ When using React with Redux you have to write a lot of boiler plate code:
 - **Action creators** and **reducers** to store input data from your React components in the Redux store
 
 When it comes to form elements, [Redux Form](https://redux-form.com/) simplifies this by providing standard mappers, action creators and reducers to automatically map data between the Redux store and form components.
+
+See [this commit](https://github.com/roelfie/react-redux-udemy/commit/4cfcbc7581c69c183649a569281c9b38863f049f) for an example.
+
+# Section 24: Calling a REST API (JSON Server)
+
+### JSON Server
+
+With [JSON Server](https://www.npmjs.com/package/json-server) ([egghead.io](https://egghead.io/lessons/javascript-creating-demo-apis-with-json-server)) you can run a fake REST API.
+
+```
+npm init
+npm install json-server
+```
+
+Create a `db.json` file containing your test data. Every object in JSON Server must have an `id` property. For instance
+
+```js
+  "streams": [
+    {
+      "id": "1",
+      "userId": 103021620253644174463,
+      "name": "Alex",
+      "email": "alex@company.com"
+    },
+    {
+      "id": "2",
+      "userId": 103021620253644174463,
+      "name": "Bob",
+      "email": "bob@company.co.uk"
+    }
+  ]
+}
+```
+
+And add a `start` script to `package.json` that starts the server on port 3001 (and watches `db.json` for changes):
+
+```js
+  "scripts": {
+    "start": "json-server -p 3001 -w db.json"
+  }
+```
+
+We will connect our React front-end to JSON Server.
 
 # Appendix: JavaScript
 

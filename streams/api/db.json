@@ -1,0 +1,24 @@
+{
+  "streams": [
+    {
+      "userId": "103021620253644174463",
+      "title": "piano",
+      "description": "Playing the piano"
+    },
+    {
+      "userId": "103021620253644174463",
+      "title": "coding",
+      "description": "Me coding a React application"
+    },
+    {
+      "userId": "103021620253644174463",
+      "title": "ninjago",
+      "description": "Me building Ninjago LEGO"
+    },
+    {
+      "userId": "172881799603644118774",
+      "title": "paint",
+      "description": "Watch me paint"
+    }
+  ]
+}
