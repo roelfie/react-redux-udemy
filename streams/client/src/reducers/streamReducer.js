@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {
   STREAM_CREATED,
   STREAM_FETCHED,
@@ -13,11 +14,14 @@ const streamReducer = (state = {}, action) => {
     case STREAM_FETCHED:
       return { ...state, [action.payload.id]: action.payload };
     case STREAMS_FETCHED:
-      console.log("TODO add fetched streams to store");
-      return state;
+      // _.mapKeys creates a map from the given keys (action.payload[n].id)
+      // to the objects in the given iterable (action.payload[n])
+      // The two spread syntax ensures that the second object is merged into the first.
+      return { ...state, ..._.mapKeys(action.payload, "id") };
     case STREAM_DELETED:
-      console.log("TODO delete stream from store");
-      return state;
+      // _.omit creates a copy of the 1st arg and leaves out the property named after the 2nd arg
+      // (the payload for STREAM_DELETED is the stream id).
+      return _.omit(state, action.payload);
     default:
       return state;
   }
