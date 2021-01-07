@@ -1,4 +1,5 @@
 import { SIGN_IN, SIGN_OUT } from "./types";
+import streamsApi from "../apis/streams";
 
 // https://developers.google.com/identity/sign-in/web/reference#users
 export const registerLogin = (googleUser) => {
@@ -17,5 +18,12 @@ export const registerLogout = () => {
   return {
     type: SIGN_OUT,
     payload: {}
+  };
+};
+
+export const createStream = (stream) => {
+  return async (dispatch) => {
+    console.log("createStream(stream: ", stream);
+    streamsApi.post("/streams", stream);
   };
 };
