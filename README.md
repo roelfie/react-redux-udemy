@@ -27,8 +27,10 @@ My notes of the Udemy course 'Modern React with Redux'
   - [Faker](https://github.com/marak/Faker.js/) (`basics` app)
   - [Lodash](https://lodash.com/) (`blog` app)
   - [Google API JavaScript client](https://github.com/google/google-api-javascript-client)
-- JavaScript state managers
-  - [Redux](https://redux.js.org/) ([Thunk](https://github.com/reduxjs/redux-thunk))
+- Redux / MobX
+  - [Redux](https://redux.js.org/)
+  - [Thunk](https://github.com/reduxjs/redux-thunk)
+  - [Redux Form](https://redux-form.com/)
   - [Mobx](https://mobx.js.org/README.html)
 - Browser APIs
   - [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) (`seasons` app)
@@ -1222,7 +1224,16 @@ Save data in the Redux store between page refreshes:
 https://localhost:3000/?debug_session=SOME_KEY
 ```
 
-By changing the session id in the URL you can even
+By changing the session id in the URL you can even maintain multiple sessions (i.e. multiple Redux stores) at the same time.
+
+# Section 23: Redux Forms
+
+When using React with Redux you have to write a lot of boiler plate code:
+
+- **mapStateToProps** to use data from the Redux store in your React components
+- **Action creators** and **reducers** to store input data from your React components in the Redux store
+
+When it comes to form elements, [Redux Form](https://redux-form.com/) simplifies this by providing standard mappers, action creators and reducers to automatically map data between the Redux store and form components.
 
 # Appendix: JavaScript
 

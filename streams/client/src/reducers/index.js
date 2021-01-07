@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
 import { SIGN_IN, SIGN_OUT } from "../actions/types";
 
 const SIGNED_OUT_STATE = {
@@ -24,4 +25,4 @@ const authenticationReducer = (state = SIGNED_OUT_STATE, action) => {
   }
 };
 
-export default combineReducers({ authDetails: authenticationReducer });
+export default combineReducers({ authDetails: authenticationReducer, form: formReducer });
