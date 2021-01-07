@@ -1,2 +1,8 @@
 export const SIGN_IN = "SIGN_IN";
 export const SIGN_OUT = "SIGN_OUT";
+
+export const STREAM_CREATED = "STREAM_CREATED";
+export const STREAM_UPDATED = "STREAM_UPDATED";
+export const STREAM_DELETED = "STREAM_DELETED";
+export const STREAM_FETCHED = "STREAM_FETCHED";
+export const STREAMS_FETCHED = "STREAMS_FETCHED";

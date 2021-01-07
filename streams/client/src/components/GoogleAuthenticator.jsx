@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import GoogleButton from "./GoogleButton";
 import { registerLogin, registerLogout } from "../actions";
 
-const CLIENT_ID = "MY_CLIENT_ID.apps.googleusercontent.com";
+const CLIENT_ID = "8143027570-jh3f6tctadfot1vp3r2qobc3l97q96od.apps.googleusercontent.com";
 
 class GoogleAuthenticator extends React.Component {
   componentDidMount() {

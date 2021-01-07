@@ -878,6 +878,8 @@ State can only be modified through the dispatcher. You can not modify state dire
 
 Do not modify existing data structures inside reducers. Always return new ones.
 
+**For tips & tricks how to modify state in reducers, see the \_doc folder, and the JavaScript appendix at the end of this README.**
+
 ```js
 originalItems.push(newItem);
 return originalItems; // BAD
@@ -1294,3 +1296,42 @@ A **default export** (`default export doSomething;`) is imported like this:
 ```js
 import doSomething from "actions";
 ```
+
+### Spread syntax & Property accessors
+
+The [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) (`...`) can be used to copy an array or object:
+
+```js
+> const numbers = [1, 2, 3];
+> const copy = [...numbers, 4];
+> copy.push(5);
+> console.log(numbers);
+< [1, 2, 3]
+> console.log(copy);
+< [1, 2, 3, 4, 5]
+```
+
+With the [property accessor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors) you can change the value of a property of an object:
+
+```js
+> const person = { name: 'John', age: 20 };
+> person['name'] = 'Jane';
+> console.log(person);
+< {name: "Jane", age: 20}
+```
+
+Recall that state in Redux is (should be) immutable. Inside a reducer, if your state contains a list of persons, you should never update (or replace) single person in the list stored in the Redux store and return the original state object (no components will be re-rendered if Redux can't detect the state has changed). What you should do instead is create a copy of the list of persons, and apply the changes to that copy. Like this:
+
+```js
+const newState = { ...state };
+newState[action.payload.id] = action.payload;
+return newState;
+```
+
+or, shorter:
+
+```js
+return { ...state, [action.payload.id]: action.payload };
+```
+
+This last statement creates a copy of an object and replaces one of its values.
