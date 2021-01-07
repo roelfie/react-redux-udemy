@@ -1206,6 +1206,11 @@ Setup an OAuth 2.0 project in the [Google API Console](https://console.developer
 - [API Reference](https://developers.google.com/identity/sign-in/web/reference)
 - [Github](https://github.com/google/google-api-javascript-client)
 
+### Examples
+
+- [Google Authentication](https://github.com/roelfie/react-redux-udemy/commit/3ff22400d13c093ebd71b005b940614e05c9ff8c) (login status stored in component state)
+- [Google Authentication with Redux](???)
+
 # Appendix: JavaScript
 
 ### Named vs. default exports
