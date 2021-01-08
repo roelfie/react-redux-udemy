@@ -29,8 +29,10 @@ export const registerLogout = () => {
   };
 };
 
-export const createStream = (stream) => async (dispatch) => {
-  const response = await streamsApi.post("/streams", stream);
+export const createStream = (stream) => async (dispatch, getState) => {
+  const { userid } = getState().authDetails;
+  const response = await streamsApi.post("/streams", { ...stream, userid });
+
   dispatch({ type: STREAM_CREATED, payload: response.data });
 };
 
