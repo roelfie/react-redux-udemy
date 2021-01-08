@@ -33,22 +33,20 @@ export const registerLogout = () => {
 export const createStream = (stream) => async (dispatch, getState) => {
   const { userid } = getState().authDetails;
   const response = await streamsApi.post("/streams", { ...stream, userid });
-
   dispatch({ type: STREAM_CREATED, payload: response.data });
   history.push("/");
 };
 
-export const updateStream = (stream) => async (dispatch) => {
-  if (!stream.id) {
-    throw new Error("Stream has no id. Unable to perform PUT operation.");
-  }
-  const response = await streamsApi.put(`/streams/${stream.id}`, stream);
+export const updateStream = (id, updatedFields) => async (dispatch) => {
+  const response = await streamsApi.patch(`/streams/${id}`, updatedFields);
   dispatch({ type: STREAM_UPDATED, payload: response.data });
+  history.push("/");
 };
 
 export const deleteStream = (streamId) => async (dispatch) => {
   await streamsApi.delete(`/streams/${streamId}`);
   dispatch({ type: STREAM_DELETED, payload: streamId });
+  history.push("/");
 };
 
 export const fetchStream = (streamId) => async (dispatch) => {

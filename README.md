@@ -1418,3 +1418,12 @@ return { ...state, [action.payload.id]: action.payload };
 ```
 
 This last statement creates a copy of an object and replaces one of its values.
+
+### Lodash
+
+Create a copy of an object containing only specific properties:
+
+```js
+import _ from "lodash";
+_.pick(this.props.stream, "propA", "propB");
+```
