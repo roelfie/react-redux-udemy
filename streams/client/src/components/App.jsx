@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <div className='ui container'>
         <Router history={history}>
-          <div>
+          <div style={{ margin: "10px" }}>
             <Header />
             <Route path='/' exact component={StreamList} />
             <Route path='/streams/show/:streamId' exact component={StreamShow} />

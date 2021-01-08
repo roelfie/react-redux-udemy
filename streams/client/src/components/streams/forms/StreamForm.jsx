@@ -1,5 +1,6 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import history from "../../../history";
 
 class StreamForm extends React.Component {
   renderError(error, touched) {
@@ -33,7 +34,10 @@ class StreamForm extends React.Component {
       <form onSubmit={this.props.handleSubmit(this.onSubmit)} className='ui form error'>
         <Field name='title' component={this.renderInput} label='Title' />
         <Field name='description' component={this.renderInput} label='Description' />
-        <button className='ui button'>Submit</button>
+        <button className='ui primary button'>Submit</button>
+        <button className='ui button' onClick={history.goBack}>
+          Cancel
+        </button>
       </form>
     );
   }

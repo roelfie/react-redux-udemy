@@ -15,14 +15,14 @@ class StreamDelete extends React.Component {
 
   renderActions = () => {
     return (
-      <div>
+      <React.Fragment>
         <button className='ui button negative' onClick={() => this.deleteStream()}>
           OK
         </button>
         <button className='ui button' onClick={() => history.goBack()}>
           Cancel
         </button>
-      </div>
+      </React.Fragment>
     );
   };
 

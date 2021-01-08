@@ -24,10 +24,10 @@ class StreamList extends React.Component {
     if (this.props.currentUserId === stream.userid) {
       return (
         <div className='right floated content'>
-          <Link to={`/streams/edit/${stream.id}`} className='ui button primary'>
+          <Link to={`/streams/edit/${stream.id}`} className='ui tiny button'>
             Edit
           </Link>
-          <Link to={`/streams/delete/${stream.id}`} className='ui button negative'>
+          <Link to={`/streams/delete/${stream.id}`} className='ui tiny button'>
             Delete
           </Link>
         </div>
@@ -54,7 +54,7 @@ class StreamList extends React.Component {
     return (
       <React.Fragment>
         <h2>Streams</h2>
-        <div className='ui celled list'>{this.renderList()}</div>
+        <div className='ui relaxed divided list'>{this.renderList()}</div>
         {this.renderAdminButtons()}
       </React.Fragment>
     );

@@ -37,14 +37,10 @@ class GoogleAuthenticator extends React.Component {
     }
     if (this.props.isSignedIn) {
       return (
-        <GoogleButton
-          color='red'
-          onClick={() => this.GoogleAuth.signOut()}
-          label={`Sign Out (${this.props.username})`}
-        />
+        <GoogleButton onClick={() => this.GoogleAuth.signOut()} label='Sign Out' color='red' />
       );
     }
-    return <GoogleButton onClick={() => this.GoogleAuth.signIn()} label='Sign In with Google' />;
+    return <GoogleButton onClick={() => this.GoogleAuth.signIn()} label='Sign In' />;
   };
 
   render() {
