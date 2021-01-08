@@ -1240,7 +1240,7 @@ When it comes to form elements, [Redux Form](https://redux-form.com/) simplifies
 
 See [this commit](https://github.com/roelfie/react-redux-udemy/commit/4cfcbc7581c69c183649a569281c9b38863f049f) for an example.
 
-# Section 24: Calling a REST API (JSON Server)
+# Section 24: REST APIs and Navigation
 
 ### JSON Server
 
@@ -1362,6 +1362,53 @@ class Stream extends React.Component {
     return <div>Stream {streamId}</div>;
   }
 }
+```
+
+# Section 25: React Portals
+
+A modal window is a screen element users must interact with before they can return to the main application.
+
+Getting a modal to display on top of all the other elements in an HTML page can be a challenge (tweaking positioning and z-index etc.). In particular in a React application where components are deeply nested inside a structure like `body > div#root > Provider > App > Components ..`. The more deeply nested the modal, the harder to get it rendered on top of everything else.
+
+In React we can use a `Portal` to create a modal element. A [portal](https://reactjs.org/docs/portals.html) is a way to render children outside the hierarchy of the parent component (for instance the body).
+
+Below an example of a Modal component styled with Fomantic UI. The `onClick` events enable the user to click outside the modal to close it.
+
+index.html:
+
+```html
+<body>
+  <div id="root"></div>
+  <div id="modal"></div>
+</body>
+```
+
+Modal.jsx:
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+import history from "../history";
+
+const Modal = ({ header, content }) => {
+  return ReactDOM.createPortal(
+    <div onClick={() => history.goBack()} className='ui dimmer modals visible active'>
+      <div onClick={(e) => e.stopPropagation()} className='ui standard modal visible active'>
+        <div className='header'>{header}</div>
+        <div className='content'>
+          <p>{content}</p>
+        </div>
+        <div className='actions'>
+          <button className='ui button negative'>OK</button>
+          <button className='ui button'>Cancel</button>
+        </div>
+      </div>
+    </div>,
+    document.getElementById("modal")
+  );
+};
+
+export default Modal;
 ```
 
 # Appendix: JavaScript
