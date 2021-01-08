@@ -1343,6 +1343,27 @@ export const myAction = (input) => async (dispatch, getState) => {
 };
 ```
 
+### Navigation with path parameters
+
+React Router makes all path parameters available on the `match.params` property:
+
+```js
+<Router history={history}>
+  <div>
+    <Route path='/streams/show/:streamId' exact component={StreamShow} />
+  </div>
+</Router>
+```
+
+```js
+class Stream extends React.Component {
+  render() {
+    const streamId = this.props.match.params.streamId;
+    return <div>Stream {streamId}</div>;
+  }
+}
+```
+
 # Appendix: JavaScript
 
 ### Named vs. default exports
