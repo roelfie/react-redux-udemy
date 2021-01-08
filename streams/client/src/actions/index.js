@@ -1,3 +1,5 @@
+import streamsApi from "../apis/streams";
+import history from "../history";
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -7,7 +9,6 @@ import {
   STREAM_FETCHED,
   STREAMS_FETCHED
 } from "./types";
-import streamsApi from "../apis/streams";
 
 // https://developers.google.com/identity/sign-in/web/reference#users
 export const registerLogin = (googleUser) => {
@@ -34,6 +35,7 @@ export const createStream = (stream) => async (dispatch, getState) => {
   const response = await streamsApi.post("/streams", { ...stream, userid });
 
   dispatch({ type: STREAM_CREATED, payload: response.data });
+  history.push("/");
 };
 
 export const updateStream = (stream) => async (dispatch) => {

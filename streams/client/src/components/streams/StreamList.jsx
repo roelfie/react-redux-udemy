@@ -21,7 +21,6 @@ class StreamList extends React.Component {
   }
 
   renderStreamButtons(stream) {
-    console.log(this.props.currentUserId);
     if (this.props.currentUserId === stream.userid) {
       return (
         <div className='right floated content'>

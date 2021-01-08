@@ -1281,6 +1281,68 @@ And add a `start` script to `package.json` that starts the server on port 3001 (
 
 We will connect our React front-end to JSON Server.
 
+### Programmatic navigation
+
+An example of **intentional navigation** with React Router:
+
+```js
+import { Link } from "react-router-dom";
+
+renderMyButton() {
+    return (
+      <div>
+        <Link to='/post/new'>
+          Create new Post
+        </Link>
+      </div>
+    );
+}
+```
+
+Sometimes we would like to navigate the user away only after an action has successfully completed. In that case the action creator is responsible for the navigation.
+
+This is harder than intentional navigation because action creators are not part of any Route. The `BrowserRoute` maintains a History object that tracks the routes visited by the user. Action creators do not have access to this History object.
+
+We solve this by using a `Router` instead of a `BrowserRouter` and providing it with our own history object:
+
+history.js:
+
+```js
+import { createBrowserHistory } from "history";
+export default createBrowserHistory();
+```
+
+App.js:
+
+```js
+import React from "react";
+import { Router, Route } from "react-router-dom";
+import history from "../history";
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Router history={history}>...</Router>
+      </div>
+    );
+  }
+}
+export default App;
+```
+
+actions/index.js
+
+```js
+import history from "../history";
+
+export const myAction = (input) => async (dispatch, getState) => {
+  const output = doYourThingWith(input);
+  dispatch({ type: DO_THING, payload: output });
+  history.push("/");
+};
+```
+
 # Appendix: JavaScript
 
 ### Named vs. default exports

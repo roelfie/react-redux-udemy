@@ -26,7 +26,6 @@ class StreamCreate extends React.Component {
   };
 
   onSubmit = (formValues) => {
-    console.log("onSubmit(formValue: ", formValues);
     // Form is already stored in Redux store. At this point we can submit to backend server etc.
     this.props.createStream(formValues);
   };
