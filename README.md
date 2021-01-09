@@ -1463,8 +1463,90 @@ class App extends React.Component {
 
 **Application: `context`**
 
-With Props you can pass data from a component to a direct child component.
-With the new Context API (since React 16) you can pass data to _any nested child component_.
+[Context](https://reactjs.org/docs/context.html) provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+### Creating the Context
+
+Creating a context with a default value:
+
+```js
+import React from "react";
+export default React.createContext("english");
+```
+
+### Updating the Context
+
+The Context `Provider` can update the Context and provides the Context to its children.
+
+```js
+import LanguageContext from "../contexts/LanguageContext";
+
+class App extends React.Component {
+  state = { language: "english" };
+
+  render() {
+    return (
+      <div>
+        <i className='us flag' onClick={() => this.setState("english")} />
+        <i className='nl flag' onClick={() => this.setState("dutch")} />
+        <LanguageContext.Provider value={this.state.language}>
+          <UserCreate />
+        </LanguageContext.Provider>
+      </div>
+    );
+  }
+}
+```
+
+The Provider is actually a React component. The value you provide to the context can be anything (from state, props or a static value) of any type (from literals to complex objects).
+
+You can use multiple Providers for the same Context. Each of the Providers stores its own value on the Context. A component using the Context will get its value from its closest Provider.
+
+Any component can use a Context, even if it is not wrapped in (a) Provider(s). In which case it will always get the default value from the Context.
+
+### Reading the Context
+
+By defining a `static contextType = SomeContext` you get access to `this.context`.
+
+```js
+import LanguageContext from "../contexts/LanguageContext";
+
+class Field extends React.Component {
+  static contextType = LanguageContext;
+
+  render() {
+    const label = this.context === "dutch" ? "Naam" : "Name";
+    return (
+      <div>
+        <label>{label}</label>
+        <input />
+      </div>
+    );
+  }
+}
+```
+
+Alternatively you can use a `Consumer`:
+
+```js
+import LanguageContext from "../contexts/LanguageContext";
+
+class Button extends React.Component {
+  render() {
+    return (
+      <button>
+        <LanguageContext.Consumer>
+          {(value) => (value === "dutch" ? "Verstuur" : "Submit")}
+        </LanguageContext.Consumer>
+      </button>
+    );
+  }
+}
+```
+
+With this `Consumer` approach you could access multiple Contexts in your component (either nested or at the same level). With `static contextType` you can always only access one `this.context`.
+
+### Problems with Context
 
 [The Problem with React's Context API](https://leewarrick.com/blog/the-problem-with-context/)
 
