@@ -29,9 +29,10 @@ My notes of the Udemy course 'Modern React with Redux'
   - [Google API JavaScript client](https://github.com/google/google-api-javascript-client)
   - [JSON Server](https://www.npmjs.com/package/json-server) ([github](https://github.com/typicode/json-server))
 - Redux / MobX
+  - [React Router](https://reactrouter.com/)
   - [Redux](https://redux.js.org/)
-  - [Thunk](https://github.com/reduxjs/redux-thunk)
   - [Redux Form](https://redux-form.com/)
+  - [Thunk](https://github.com/reduxjs/redux-thunk)
   - [Mobx](https://mobx.js.org/README.html)
 - Browser APIs
   - [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API) (`seasons` app)
