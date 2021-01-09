@@ -1546,9 +1546,21 @@ class Button extends React.Component {
 
 With this `Consumer` approach you could access multiple Contexts in your component (either nested or at the same level). With `static contextType` you can always only access one `this.context`.
 
-### Problems with Context
+# Section 29: Context vs. Redux
 
 [The Problem with React's Context API](https://leewarrick.com/blog/the-problem-with-context/)
+
+| Redux                                                                         | Context                                |
+| ----------------------------------------------------------------------------- | -------------------------------------- |
+| Distributes data to various components                                        | Distributes data to various components |
+| Centralized data store                                                        |                                        |
+| Provides mechanism for changing data in the store (action creators, reducers) |                                        |
+
+### Replacing Redux with Context
+
+Even though the Context systems seems more limited than Redux, section 29 illustrates how you can replace Redux with Context by encapsulating data and business logic in a single custom Context component.
+
+Contains some interesting patterns!
 
 # Appendix: JavaScript
 
