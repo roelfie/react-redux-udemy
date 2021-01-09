@@ -22,6 +22,7 @@ My notes of the Udemy course 'Modern React with Redux'
   - [Babel](https://babeljs.io/repl)
   - [Prettier](https://prettier.io/) VSCode formatter plugin (\*)
   - [Fomantic UI](https://fomantic-ui.com/) (a.k.a. Semantic UI)
+  - [Node Media Server](https://github.com/illuspas/Node-Media-Server)
 - JavaScript libraries
   - [Axios](https://www.npmjs.com/package/axios)
   - [Faker](https://github.com/marak/Faker.js/) (`basics` app)
@@ -1410,6 +1411,52 @@ const Modal = ({ header, content }) => {
 };
 
 export default Modal;
+```
+
+# Section 26: Streaming Video
+
+### React Router Switch
+
+By default React Router renders all routes that match the given path. When you request path `/streams/123` then component `StreamShow` will render. But when you request `/streams/new` then both `StreamCreate` and `StreamShow` will be rendered (StreamShow interprets `new` as the stream id):
+
+```js
+import { Router, Route } from "react-router-dom";
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Router>
+          <Route path='/streams/new' exact component={StreamCreate} />
+          <Route path='/streams/edit/:streamId' exact component={StreamEdit} />
+          <Route path='/streams/:streamId' exact component={StreamShow} />
+        </Router>
+      </div>
+    );
+  }
+}
+```
+
+By wrapping `Route`s in a `<Switch>` React Router will only render the first component that matches (so the order matters inside a switch):
+
+```js
+import { Router, Route, Switch } from "react-router-dom";
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Router>
+          <Switch>
+            <Route path='/streams/new' exact component={StreamCreate} />
+            <Route path='/streams/edit/:streamId' exact component={StreamEdit} />
+            <Route path='/streams/:streamId' exact component={StreamShow} />
+          </Switch>
+        </Router>
+      </div>
+    );
+  }
+}
 ```
 
 # Appendix: JavaScript
