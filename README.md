@@ -1459,6 +1459,15 @@ class App extends React.Component {
 }
 ```
 
+# Section 28: Context
+
+**Application: `context`**
+
+With Props you can pass data from a component to a direct child component.
+With the new Context API (since React 16) you can pass data to _any nested child component_.
+
+[The Problem with React's Context API](https://leewarrick.com/blog/the-problem-with-context/)
+
 # Appendix: JavaScript
 
 ### Named vs. default exports
