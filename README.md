@@ -7,16 +7,11 @@ My notes of the Udemy course 'Modern React with Redux'
 - React
   - [React](https://reactjs.org/)
   - [Create-react-app](https://create-react-app.dev/)
-- Courses
-  - [Modern React with Redux](https://www.udemy.com/course/react-redux/learn/lecture/12531046#overview) (Udemy)
-  - [Manage Complex State in React Apps with MobX](https://egghead.io/courses/manage-complex-state-in-react-apps-with-mobx) (egghead.io)
-  - [React State Management](https://www.linkedin.com/learning/react-state-management/) (LinkedIn Learning)
-- Courses (OAuth)
-  - [The Nuts and Bolts of OAuth 2.0](https://www.udemy.com/course/oauth-2-simplified/) (Udemy)
-  - [OAuth and OpenID Connect](https://www.linkedin.com/learning/web-security-oauth-and-openid-connect-2/) (LinkedIn Learning)
+- Chrome extensions
+  - [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+  - [Redux Dev Tools](https://github.com/zalmoxisus/redux-devtools-extension)
+  - [React Sight](https://www.reactsight.com/)
 - Tools
-  - [React Developer Tools for Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-  - [Redux Dev Tools extension](https://github.com/zalmoxisus/redux-devtools-extension) (Chrome extension by zalmoxisus)
   - [CodeSandbox](http://react.new/)
   - [Codepen.io](https://codepen.io/)
   - [Babel](https://babeljs.io/repl)
@@ -43,6 +38,13 @@ My notes of the Udemy course 'Modern React with Redux'
   - [Google](https://console.developers.google.com/) (`movie-player` app)
   - [Google Translate](https://cloud.google.com/translate/docs/reference/rest/v2/translate) (`widgets` app)
   - [Wikipedia](https://www.mediawiki.org/wiki/API:Main_page) (`widgets` app)
+- Courses
+  - [Modern React with Redux](https://www.udemy.com/course/react-redux/learn/lecture/12531046#overview) (Udemy)
+  - [Manage Complex State in React Apps with MobX](https://egghead.io/courses/manage-complex-state-in-react-apps-with-mobx) (egghead.io)
+  - [React State Management](https://www.linkedin.com/learning/react-state-management/) (LinkedIn Learning)
+- Courses (OAuth)
+  - [The Nuts and Bolts of OAuth 2.0](https://www.udemy.com/course/oauth-2-simplified/) (Udemy)
+  - [OAuth and OpenID Connect](https://www.linkedin.com/learning/web-security-oauth-and-openid-connect-2/) (LinkedIn Learning)
 
 (\*) Open VSCode `settings.json` ('Open Settings (JSON)' command) and add the following line: `"editor.defaultFormatter": "esbenp.prettier-vscode"`. Optionally, set 'Format on save' = true.
 
