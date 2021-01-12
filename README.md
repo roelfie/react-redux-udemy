@@ -50,8 +50,7 @@ My notes of the Udemy course 'Modern React with Redux'
 
 # Apps
 
-Throughout this course, the following React applications will be built. This course focuses on state management with standard React (state, context) and with Redux.
-For some `app`s I have ceated a `app-mobx` copy to illustrate what the app would look like when using MobX.
+Throughout this course, the following React applications will be built.
 
 | Section | Application  | Topics                                              | Libs & tools                        | MobX? |
 | ------- | ------------ | --------------------------------------------------- | ----------------------------------- | ----- |
@@ -69,6 +68,10 @@ For some `app`s I have ceated a `app-mobx` copy to illustrate what the app would
 | 24      |              | REST, path params (react router), browser history   | JSON Server, Lodash                 |       |
 | 25      |              | portals (modal popups)                              |                                     |       |
 | 27      | context      | context                                             |                                     |       |
+
+This course focuses on state management with standard React (state, context) and with Redux. For some `app`s I have ceated a `app-mobx` copy to illustrate what the app would look like when using MobX.
+
+At the end of this README there's an appendix on MobX.
 
 # Section 1: Introduction
 
@@ -1649,3 +1652,32 @@ Create a copy of an object containing only specific properties:
 import _ from "lodash";
 _.pick(this.props.stream, "propA", "propB");
 ```
+
+# Appendix: MobX
+
+### App: season-mobx
+
+#### Don't use decorators
+
+Documentation and instruction videos on Egghead.io make use of the ES.next decorators (@observable, @observer, ..).
+Because decorators are not an ES standard yet, as of MobX version 6 it is recommended to [use `observable` / `makeObservable` / `makeAutoObservable` instead of decorators](https://mobx.js.org/enabling-decorators.html).
+
+#### mobx-react-lite doesn't support class components
+
+The MobX documentation focuses on functional components. It doesn't say much on class components. This works, but only for `mobx-react`:
+
+```js
+import { observer } from "mobx-react";
+
+const App = observer(
+  class App extends React.Component {
+    render() {
+      return <ChildComponent prop1={this.props.state.value} />;
+    }
+  }
+);
+
+export default App;
+```
+
+With `mobx-react-lite` you will see _TypeError: Class constructor App cannot be invoked without 'new'_.
