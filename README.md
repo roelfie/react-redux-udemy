@@ -48,6 +48,27 @@ My notes of the Udemy course 'Modern React with Redux'
 
 (\*) Open VSCode `settings.json` ('Open Settings (JSON)' command) and add the following line: `"editor.defaultFormatter": "esbenp.prettier-vscode"`. Optionally, set 'Format on save' = true.
 
+# Apps
+
+Throughout this course, the following React applications will be built:
+
+| Section | Application  | Topics                                              | Libs & tools                        |
+| ------- | ------------ | --------------------------------------------------- | ----------------------------------- |
+| 3       | basics       | functional components, props                        | Faker, Semantic UI                  |
+| 4-6     | seasons      | class components, state, lifecycle                  | Geolocation API                     |
+| 7-10    | image-finder | forms, events, callbacks, refs, promises            | Axios, Unsplash, grid               |
+| 11      | movie-player | refs                                                | Youtube API, grid                   |
+| 12      | widgets      | hooks (useState, useEffect, useRef), API throttling | Wikipedia API, Google translate API |
+| 13      |              | navigation (custom)                                 |                                     |
+| 17      | songs        | redux, actions, reducers                            |                                     |
+| 18      | blog         | redux thunk (asycn actions), middleware             |                                     |
+| 19      |              | API call caching, memoization                       | Lodash                              |
+| 20-22   | streams      | navigation (react router)                           | OAuth (Google API), Redux dev tools |
+| 23      |              | redux form                                          |                                     |
+| 24      |              | REST, path params (react router), browser history   | JSON Server, Lodash                 |
+| 25      |              | portals (modal popups)                              |                                     |
+| 27      | context      | context                                             |                                     |
+
 # Section 1: Introduction
 
 My system:
